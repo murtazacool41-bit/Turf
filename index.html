@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Panchayat Turf - Premium Cricket Turf in Kushalgarh, Rajasthan. Book cricket slots online with UPI payment. Night matches, floodlights, tournaments.">
+    <meta name="keywords" content="cricket turf kushalgarh, turf booking, panchayat turf, cricket ground rental">
+    <meta name="author" content="Panchayat Turf">
+    <title>Panchayat Turf - Premium Cricket Turf in Kushalgarh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #22c55e;
+            border-radius: 5px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80') center/cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #22c55e;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Facilities Grid */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .facility-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .facility-card i {
+            font-size: 3rem;
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+
+        /* Slot Booking */
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .booking-modal.active {
+            display: flex;
+        }
+
+        .booking-container {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .slot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .slot-btn {
+            padding: 12px;
+            border: 2px solid #333;
+            background: transparent;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slot-btn:hover {
+            border-color: #22c55e;
+        }
+
+        .slot-btn.selected {
+            background: #22c55e;
+            border-color: #22c55e;
+        }
+
+        .slot-btn.booked {
+            background: #dc2626;
+            border-color: #dc2626;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #22c55e;
+        }
+
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 20px;
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #22c55e;
+        }
+
+        .map {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .btn-primary, .btn-secondary {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        body.light-mode {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .facility-card,
+        body.light-mode .review-card {
+            background: rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919876543210?text=I%20want%20to%20book%20a%20slot%20at%20Panchayat%20Turf" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Book Your Cricket Slot at <span class="gradient-text">Panchayat Turf</span></h1>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Premium Cricket Turf in Kushalgarh with Easy Online Booking</p>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown">
+                <p style="font-weight: 600; margin-bottom: 10px;">🏆 Next Tournament Starts In</p>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="openBookingModal()">
+                    <i class="fas fa-calendar-check"></i> Book Now
+                </button>
+                <button class="btn-secondary" onclick="scrollToSection('availability')">
+                    <i class="fas fa-clock"></i> View Availability
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About <span class="gradient-text">Panchayat Turf</span></h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; margin-bottom: 30px;">Panchayat Turf is Kushalgarh's premier cricket facility, offering a professional-grade artificial turf pitch with modern amenities. Whether you're a casual player or organizing a tournament, we provide the perfect environment for your cricket matches.</p>
+                <div style="background: rgba(34,197,94,0.1); padding: 20px; border-radius: 15px; text-align: left;">
+                    <h3 style="color: #22c55e; margin-bottom: 15px;">Turf Specifications</h3>
+                    <ul style="list-style: none;">
+                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> International Standard Artificial Turf</li>
+                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> 70m x 50m Playing Area</li>
+                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> Professional Bowling Practice Area</li>
+                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> 6 Lane Practice Nets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section style="background: linear-gradient(180deg, #000000 0%, #0a2a0a 100%);">
+        <div class="container">
+            <h2 class="section-title">Our <span class="gradient-text">Facilities</span></h2>
+            <div class="facilities-grid">
+                <div class="facility-card"><i class="fas fa-tachometer-alt"></i><h3>Professional Artificial Turf</h3></div>
+                <div class="facility-card"><i class="fas fa-lightbulb"></i><h3>LED Flood Lights</h3></div>
+                <div class="facility-card"><i class="fas fa-tint"></i><h3>Drinking Water</h3></div>
+                <div class="facility-card"><i class="fas fa-parking"></i><h3>Parking Area</h3></div>
+                <div class="facility-card"><i class="fas fa-chair"></i><h3>Seating Area</h3></div>
+                <div class="facility-card"><i class="fas fa-toilet"></i><h3>Washroom Facility</h3></div>
+                <div class="facility-card"><i class="fas fa-trophy"></i><h3>Tournament Support</h3></div>
+                <div class="facility-card"><i class="fas fa-moon"></i><h3>Night Matches</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slot Availability -->
+    <section id="availability">
+        <div class="container">
+            <h2 class="section-title">Slot <span class="gradient-text">Availability</span></h2>
+            <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap;">
+                <div><span style="display: inline-block; width: 20px; height: 20px; background: #22c55e; border-radius: 5px;"></span> Available</div>
+                <div><span style="display: inline-block; width: 20px; height: 20px; background: #dc2626; border-radius: 5px;"></span> Booked</div>
+                <div><span style="display: inline-block; width: 20px; height: 20px; background: #fbbf24; border-radius: 5px;"></span> Pending</div>
+            </div>
+            <div class="slot-grid" id="slotGrid">
+                <!-- Slots will be populated by JavaScript -->
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn-primary" onclick="openBookingModal()">
+                    <i class="fas fa-calendar-plus"></i> Book Your Slot Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section style="background: #0a0a0a;">
+        <div class="container">
+            <h2 class="section-title">Photo <span class="gradient-text">Gallery</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=400" alt="Cricket Turf Day"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1624526267942-ab0a6e0127e8?auto=format&fit=crop&w=400" alt="Night Match"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?auto=format&fit=crop&w=400" alt="Tournament"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=400" alt="Team Celebration"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">What <span class="gradient-text">Players Say</span></h2>
+            <div class="reviews-grid" id="reviewsContainer"></div>
+        </div>
+    </section>
+
+    <!-- Tournament Section -->
+    <section style="background: linear-gradient(135deg, #0a2a0a 0%, #000000 100%);">
+        <div class="container">
+            <h2 class="section-title">Upcoming <span class="gradient-text">Tournaments</span></h2>
+            <div style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; max-width: 800px; margin: 0 auto;">
+                <h3 style="color: #22c55e; margin-bottom: 15px;">🏆 Winter Championship 2025</h3>
+                <p><strong>Date:</strong> January 15-20, 2025</p>
+                <p><strong>Prize Pool:</strong> ₹51,000</p>
+                <p><strong>Registration Fee:</strong> ₹2,500 per team</p>
+                <p><strong>Last Date:</strong> January 10, 2025</p>
+                <button class="btn-primary" style="margin-top: 20px;" onclick="openBookingModal()">
+                    <i class="fas fa-trophy"></i> Register Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><strong>Address</strong><br>Kushalgarh, Rajasthan, India</div></div>
+                    <div class="contact-item"><i class="fas fa-phone"></i><div><strong>Phone</strong><br><a href="tel:+919876543210" style="color: white; text-decoration: none;">+91 98765 43210</a></div></div>
+                    <div class="contact-item"><i class="fab fa-whatsapp"></i><div><strong>WhatsApp</strong><br><a href="https://wa.me/919876543210" style="color: white; text-decoration: none;">+91 98765 43210</a></div></div>
+                    <div class="contact-item"><i class="fab fa-instagram"></i><div><strong>Instagram</strong><br><a href="#" style="color: white; text-decoration: none;">@panchayatturf</a></div></div>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118780.20309174073!2d74.3801177!3d23.1476244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39658af2b5189f1b%3A0x6fd9d6d8a6b1c4e2!2sKushalgarh%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="booking-container">
+            <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+            <h2 style="margin-bottom: 20px;">Book Your Slot</h2>
+            <div id="bookingSteps">
+                <!-- Step 1: Select Slot -->
+                <div id="step1">
+                    <div class="form-group">
+                        <label>Select Date</label>
+                        <input type="date" id="bookingDate" min="2025-01-01">
+                    </div>
+                    <div class="form-group">
+                        <label>Select Time Slot</label>
+                        <select id="bookingSlot">
+                            <option value="">Select a slot</option>
+                            <option value="6:00 AM - 7:00 AM">6:00 AM - 7:00 AM</option>
+                            <option value="7:00 AM - 8:00 AM">7:00 AM - 8:00 AM</option>
+                            <option value="8:00 AM - 9:00 AM">8:00 AM - 9:00 AM</option>
+                            <option value="5:00 PM - 6:00 PM">5:00 PM - 6:00 PM</option>
+                            <option value="6:00 PM - 7:00 PM">6:00 PM - 7:00 PM</option>
+                            <option value="7:00 PM - 8:00 PM">7:00 PM - 8:00 PM</option>
+                            <option value="8:00 PM - 9:00 PM">8:00 PM - 9:00 PM</option>
+                            <option value="9:00 PM - 10:00 PM">9:00 PM - 10:00 PM</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="nextStep()" style="width: 100%;">Continue</button>
+                </div>
+                
+                <!-- Step 2: User Details -->
+                <div id="step2" style="display: none;">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number *</label>
+                        <input type="tel" id="userMobile" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Team Name (Optional)</label>
+                        <input type="text" id="teamName">
+                    </div>
+                    <button class="btn-primary" onclick="nextStep()" style="width: 100%;">Continue</button>
+                    <button class="btn-secondary" onclick="prevStep()" style="width: 100%; margin-top: 10px;">Back</button>
+                </div>
+                
+                <!-- Step 3: Payment -->
+                <div id="step3" style="display: none;">
+                    <div style="text-align: center;">
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                            <i class="fas fa-qrcode" style="font-size: 150px; color: #000;"></i>
+                        </div>
+                        <p><strong>UPI ID:</strong> panchayatturf@okhdfcbank</p>
+                        <p><strong>Amount:</strong> ₹<span id="bookingAmount">800</span></p>
+                        <div class="form-group">
+                            <label>Upload Payment Screenshot</label>
+                            <input type="file" id="paymentScreenshot" accept="image/*">
+                        </div>
+                        <button class="btn-primary" onclick="confirmBooking()" style="width: 100%; margin-top: 20px;">Confirm Booking</button>
+                        <button class="btn-secondary" onclick="prevStep()" style="width: 100%; margin-top: 10px;">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Panchayat Turf. All rights reserved.</p>
+            <p style="margin-top: 10px;">Premium Cricket Turf in Kushalgarh, Rajasthan</p>
+        </div>
+    </footer>
+
+    <script>
+        // Slot Data
+        const slots = [
+            '6:00 AM - 7:00 AM', '7:00 AM - 8:00 AM', '8:00 AM - 9:00 AM',
+            '5:00 PM - 6:00 PM', '6:00 PM - 7:00 PM', '7:00 PM - 8:00 PM',
+            '8:00 PM - 9:00 PM', '9:00 PM - 10:00 PM'
+        ];
+        
+        let bookedSlots = ['6:00 PM - 7:00 PM', '8:00 PM - 9:00 PM']; // Example booked slots
+        let pendingSlots = ['7:00 PM - 8:00 PM']; // Example pending slots
+        
+        // Display slots
+        function displaySlots() {
+            const slotGrid = document.getElementById('slotGrid');
+            slotGrid.innerHTML = '';
+            slots.forEach(slot => {
+                const button = document.createElement('button');
+                button.className = 'slot-btn';
+                button.textContent = slot;
+                if (bookedSlots.includes(slot)) {
+                    button.classList.add('booked');
+                    button.disabled = true;
+                } else if (pendingSlots.includes(slot)) {
+                    button.style.background = '#fbbf24';
+                    button.style.borderColor = '#fbbf24';
+                }
+                button.onclick = () => {
+                    if (!bookedSlots.includes(slot)) {
+                        document.getElementById('bookingSlot').value = slot;
+                        openBookingModal();
+                    }
+                };
+                slotGrid.appendChild(button);
+            });
+        }
+        
+        // Countdown Timer
+        function updateCountdown() {
+            const tournamentDate = new Date('January 15, 2025 10:00:00').getTime();
+            const now = new Date().getTime();
+            const diff = tournamentDate - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (86400000)) / (3600000));
+                const minutes = Math.floor((diff % (3600000)) / (60000));
+                const seconds = Math.floor((diff % (60000)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+        
+        // Reviews
+        const reviews = [
+            { name: 'Rahul Sharma', rating: 5, text: 'Best turf in Kushalgarh! Excellent facilities and lighting.', team: 'Kushalgarh Kings' },
+            { name: 'Amit Patel', rating: 5, text: 'Very professional management. Easy online booking system.', team: 'Turf Warriors' },
+            { name: 'Vikram Singh', rating: 4, text: 'Great experience playing night matches here.', team: 'Star Cricket Club' }
+        ];
+        
+        function displayReviews() {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = reviews.map(review => `
+                <div class="review-card">
+                    <div class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
+                    <p>"${review.text}"</p>
+                    <h4 style="margin-top: 15px;">${review.name}</h4>
+                    <small style="color: #22c55e;">${review.team}</small>
+                </div>
+            `).join('');
+        }
+        
+        // Booking Steps
+        let currentStep = 1;
+        
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.add('active');
+            currentStep = 1;
+            showStep();
+        }
+        
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            currentStep = 1;
+            showStep();
+        }
+        
+        function showStep() {
+            document.getElementById('step1').style.display = currentStep === 1 ? 'block' : 'none';
+            document.getElementById('step2').style.display = currentStep === 2 ? 'block' : 'none';
+            document.getElementById('step3').style.display = currentStep === 3 ? 'block' : 'none';
+        }
+        
+        function nextStep() {
+            if (currentStep === 1) {
+                const slot = document.getElementById('bookingSlot').value;
+                if (!slot) {
+                    alert('Please select a time slot');
+                    return;
+                }
+                const date = document.getElementById('bookingDate').value;
+                if (!date) {
+                    alert('Please select a date');
+                    return;
+                }
+                // Calculate amount (weekend pricing)
+                const selectedDate = new Date(date);
+                const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
+                const amount = isWeekend ? 1200 : 800;
+                document.getElementById('bookingAmount').textContent = amount;
+            } else if (currentStep === 2) {
+                const name = document.getElementById('userName').value;
+                const mobile = document.getElementById('userMobile').value;
+                if (!name || !mobile) {
+                    alert('Please fill all required fields');
+                    return;
+                }
+                if (!/^\d{10}$/.test(mobile)) {
+                    alert('Please enter a valid 10-digit mobile number');
+                    return;
+                }
+            }
+            currentStep++;
+            showStep();
+        }
+        
+        function prevStep() {
+            currentStep--;
+            showStep();
+        }
+        
+        function confirmBooking() {
+            const screenshot = document.getElementById('paymentScreenshot').files[0];
+            if (!screenshot) {
+                alert('Please upload payment screenshot');
+                return;
+            }
+            alert('Booking confirmed! You will receive a confirmation message shortly.');
+            closeBookingModal();
+            // Here you would save to backend
+        }
+        
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('.dark-mode-toggle i');
+            if (document.body.classList.contains('light-mode')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        }
+        
+        // Set minimum date for booking
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('bookingDate').min = today;
+        
+        // Initialize
+        displaySlots();
+        displayReviews();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeBookingModal();
+            }
+        }
+    </script>
+</body>
+</html>
