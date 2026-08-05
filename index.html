@@ -2,883 +2,626 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Panchayat Turf - Premium Cricket Turf in Kushalgarh, Rajasthan. Book cricket slots online with UPI payment. Night matches, floodlights, tournaments.">
-    <meta name="keywords" content="cricket turf kushalgarh, turf booking, panchayat turf, cricket ground rental">
-    <meta name="author" content="Panchayat Turf">
-    <title>Panchayat Turf - Premium Cricket Turf in Kushalgarh</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎯 Couple's Choice - Party Game</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0b0e1a;
+            --card: #141829;
+            --text: #e8edf5;
+            --muted: #7a85a8;
+            --primary: #6c5ce7;
+            --gold: #fdcb6e;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            --border: #1e2640;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #000000;
-            color: #ffffff;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #22c55e;
-            border-radius: 5px;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            color: white;
-            padding: 14px 32px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 14px 32px;
-            border: 2px solid white;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Floating WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* Hero Section */
-        .hero {
+            font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            padding: 16px;
+            margin: 0;
+        }
+
+        .container {
+            background: var(--card);
+            border-radius: 32px;
+            padding: 28px 24px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        h1 {
+            color: var(--text);
+            font-size: 22px;
+            font-weight: 700;
+        }
+        h1 span {
+            color: var(--gold);
+        }
+        .player-count {
+            background: rgba(108, 92, 231, 0.15);
+            color: var(--primary);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .question-number {
+            color: var(--muted);
+            font-size: 13px;
+            margin: 8px 0 12px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #1e2640;
+            border-radius: 2px;
+            margin: 8px 0 20px 0;
             overflow: hidden;
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80') center/cover;
-            opacity: 0.3;
-            z-index: 0;
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6c5ce7, #fdcb6e);
+            border-radius: 2px;
+            transition: width 0.6s ease;
+            width: 5%;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
+        .question-text {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 12px 0 20px 0;
+            min-height: 70px;
+            padding: 6px;
+            line-height: 1.4;
         }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* Countdown Timer */
-        .countdown {
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px;
-            max-width: 500px;
-            margin: 30px auto;
-        }
-
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .countdown-item {
-            text-align: center;
-        }
-
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #22c55e;
-        }
-
-        .countdown-label {
-            font-size: 0.75rem;
-            color: #aaa;
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        /* Facilities Grid */
-        .facilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .facility-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            padding: 30px 20px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .facility-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.1);
-        }
-
-        .facility-card i {
-            font-size: 3rem;
-            color: #22c55e;
-            margin-bottom: 15px;
-        }
-
-        /* Slot Booking */
-        .booking-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .booking-modal.active {
-            display: flex;
-        }
-
-        .booking-container {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            border-radius: 20px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 30px;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: #aaa;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: white;
-        }
-
-        .slot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .slot-btn {
-            padding: 12px;
-            border: 2px solid #333;
-            background: transparent;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .slot-btn:hover {
-            border-color: #22c55e;
-        }
-
-        .slot-btn.selected {
-            background: #22c55e;
-            border-color: #22c55e;
-        }
-
-        .slot-btn.booked {
-            background: #dc2626;
-            border-color: #dc2626;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
+        .question-text .category {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--gold);
             display: block;
             margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* Player Grid */
+        .player-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 16px 0 20px 0;
+        }
+        .player-btn {
+            padding: 16px 10px;
+            border: 2px solid #1e2640;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 15px;
             font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid #333;
-            border-radius: 10px;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #22c55e;
-        }
-
-        /* Reviews */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .review-card {
-            background: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 20px;
-        }
-
-        .stars {
-            color: #fbbf24;
-            margin-bottom: 15px;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
             cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: #22c55e;
-        }
-
-        .map {
-            width: 100%;
-            height: 300px;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .map iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* Footer */
-        footer {
-            background: #0a0a0a;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #222;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .btn-primary, .btn-secondary {
-                padding: 12px 24px;
-                font-size: 0.9rem;
-            }
-            
-            section {
-                padding: 50px 0;
-            }
-            
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+            transition: all 0.2s;
+            color: var(--text);
+            touch-action: manipulation;
+            min-height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .player-btn:active {
+            transform: scale(0.95);
+        }
+        .player-btn.voted {
+            border-color: #6c5ce7;
+            background: rgba(108, 92, 231, 0.12);
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.08);
+        }
+        .player-btn .vote-badge {
+            font-size: 10px;
+            opacity: 0.6;
+            margin-left: 6px;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 6px 0 14px 0;
+            min-height: 22px;
+        }
+        .status-text .highlight {
+            color: var(--gold);
+        }
+
+        /* Results */
+        .results-area {
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-name {
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 400;
+        }
+        .result-bar-wrap {
+            flex: 1;
+            margin: 0 12px;
+            height: 20px;
+            background: #1e2640;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .result-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+        }
+        .result-bar-fill.winner {
+            background: linear-gradient(90deg, #fdcb6e, #f39c12);
+            box-shadow: 0 0 20px rgba(253, 203, 110, 0.2);
+        }
+        .result-votes {
+            color: var(--muted);
+            font-size: 13px;
+            min-width: 30px;
+            text-align: right;
+        }
+
+        .winner-announce {
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(253, 203, 110, 0.08);
+            border: 1px solid rgba(253, 203, 110, 0.15);
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .winner-announce span {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 6px;
+        }
+        .control-btn {
+            padding: 13px 24px;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            touch-action: manipulation;
+            flex: 1;
+            min-width: 80px;
+        }
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+        .btn-reveal {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+        }
+        .btn-next {
+            background: rgba(253, 203, 110, 0.15);
+            color: var(--gold);
+            border: 1px solid rgba(253, 203, 110, 0.2);
+        }
+        .btn-reset {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .hidden {
+            display: none !important;
         }
 
-        body.light-mode {
-            background: #f5f5f5;
-            color: #1a1a1a;
+        .footer {
+            margin-top: 18px;
+            font-size: 11px;
+            color: var(--muted);
+            opacity: 0.3;
+            letter-spacing: 1px;
         }
 
-        body.light-mode .facility-card,
-        body.light-mode .review-card {
-            background: rgba(0,0,0,0.05);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeInUp 0.4s ease;
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                padding: 20px 16px;
+            }
+            .question-text {
+                font-size: 20px;
+                min-height: 50px;
+            }
+            .player-btn {
+                font-size: 13px;
+                padding: 12px 8px;
+                min-height: 46px;
+            }
+            .result-name {
+                font-size: 13px;
+            }
+            .control-btn {
+                font-size: 12px;
+                padding: 11px 16px;
+                min-width: 60px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Dark Mode Toggle -->
-    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
-        <i class="fas fa-moon"></i>
+    <div class="container" id="app">
+        <div class="header">
+            <h1>🎯 <span>Couple's</span> Choice</h1>
+            <span class="player-count">👥 10 players</span>
+        </div>
+
+        <div class="question-number" id="qNumber">Question 1 of 12</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="question-text fade-in" id="qText">
+            <span class="category">👔 STYLE</span>
+            Who has the best style?
+        </div>
+
+        <div class="player-grid" id="playerGrid">
+            <!-- Generated by JS -->
+        </div>
+
+        <div class="status-text" id="status">📱 Pass the phone. Everyone votes <span class="highlight">secretly</span>.</div>
+
+        <div class="results-area hidden" id="resultsArea">
+            <div id="resultsList"></div>
+            <div class="winner-announce" id="winnerAnnounce">
+                🏆 Winner!
+                <span>with the most votes</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn btn-reveal" id="revealBtn" onclick="reveal()">👀 Reveal</button>
+            <button class="control-btn btn-next hidden" id="nextBtn" onclick="nextQuestion()">➡️ Next</button>
+            <button class="control-btn btn-reset" onclick="resetGame()">⟲ Restart</button>
+        </div>
+
+        <div class="footer">pass &amp; play • anonymous votes • no judgment</div>
     </div>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919876543210?text=I%20want%20to%20book%20a%20slot%20at%20Panchayat%20Turf" target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Book Your Cricket Slot at <span class="gradient-text">Panchayat Turf</span></h1>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;">Premium Cricket Turf in Kushalgarh with Easy Online Booking</p>
-            
-            <!-- Countdown Timer -->
-            <div class="countdown">
-                <p style="font-weight: 600; margin-bottom: 10px;">🏆 Next Tournament Starts In</p>
-                <div class="countdown-grid">
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="days">00</div>
-                        <div class="countdown-label">Days</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="hours">00</div>
-                        <div class="countdown-label">Hours</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="minutes">00</div>
-                        <div class="countdown-label">Minutes</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="seconds">00</div>
-                        <div class="countdown-label">Seconds</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button class="btn-primary" onclick="openBookingModal()">
-                    <i class="fas fa-calendar-check"></i> Book Now
-                </button>
-                <button class="btn-secondary" onclick="scrollToSection('availability')">
-                    <i class="fas fa-clock"></i> View Availability
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About <span class="gradient-text">Panchayat Turf</span></h2>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.1rem; margin-bottom: 30px;">Panchayat Turf is Kushalgarh's premier cricket facility, offering a professional-grade artificial turf pitch with modern amenities. Whether you're a casual player or organizing a tournament, we provide the perfect environment for your cricket matches.</p>
-                <div style="background: rgba(34,197,94,0.1); padding: 20px; border-radius: 15px; text-align: left;">
-                    <h3 style="color: #22c55e; margin-bottom: 15px;">Turf Specifications</h3>
-                    <ul style="list-style: none;">
-                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> International Standard Artificial Turf</li>
-                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> 70m x 50m Playing Area</li>
-                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> Professional Bowling Practice Area</li>
-                        <li><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> 6 Lane Practice Nets</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Facilities Section -->
-    <section style="background: linear-gradient(180deg, #000000 0%, #0a2a0a 100%);">
-        <div class="container">
-            <h2 class="section-title">Our <span class="gradient-text">Facilities</span></h2>
-            <div class="facilities-grid">
-                <div class="facility-card"><i class="fas fa-tachometer-alt"></i><h3>Professional Artificial Turf</h3></div>
-                <div class="facility-card"><i class="fas fa-lightbulb"></i><h3>LED Flood Lights</h3></div>
-                <div class="facility-card"><i class="fas fa-tint"></i><h3>Drinking Water</h3></div>
-                <div class="facility-card"><i class="fas fa-parking"></i><h3>Parking Area</h3></div>
-                <div class="facility-card"><i class="fas fa-chair"></i><h3>Seating Area</h3></div>
-                <div class="facility-card"><i class="fas fa-toilet"></i><h3>Washroom Facility</h3></div>
-                <div class="facility-card"><i class="fas fa-trophy"></i><h3>Tournament Support</h3></div>
-                <div class="facility-card"><i class="fas fa-moon"></i><h3>Night Matches</h3></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slot Availability -->
-    <section id="availability">
-        <div class="container">
-            <h2 class="section-title">Slot <span class="gradient-text">Availability</span></h2>
-            <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap;">
-                <div><span style="display: inline-block; width: 20px; height: 20px; background: #22c55e; border-radius: 5px;"></span> Available</div>
-                <div><span style="display: inline-block; width: 20px; height: 20px; background: #dc2626; border-radius: 5px;"></span> Booked</div>
-                <div><span style="display: inline-block; width: 20px; height: 20px; background: #fbbf24; border-radius: 5px;"></span> Pending</div>
-            </div>
-            <div class="slot-grid" id="slotGrid">
-                <!-- Slots will be populated by JavaScript -->
-            </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <button class="btn-primary" onclick="openBookingModal()">
-                    <i class="fas fa-calendar-plus"></i> Book Your Slot Now
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section style="background: #0a0a0a;">
-        <div class="container">
-            <h2 class="section-title">Photo <span class="gradient-text">Gallery</span></h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=400" alt="Cricket Turf Day"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1624526267942-ab0a6e0127e8?auto=format&fit=crop&w=400" alt="Night Match"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?auto=format&fit=crop&w=400" alt="Tournament"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=400" alt="Team Celebration"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section>
-        <div class="container">
-            <h2 class="section-title">What <span class="gradient-text">Players Say</span></h2>
-            <div class="reviews-grid" id="reviewsContainer"></div>
-        </div>
-    </section>
-
-    <!-- Tournament Section -->
-    <section style="background: linear-gradient(135deg, #0a2a0a 0%, #000000 100%);">
-        <div class="container">
-            <h2 class="section-title">Upcoming <span class="gradient-text">Tournaments</span></h2>
-            <div style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; max-width: 800px; margin: 0 auto;">
-                <h3 style="color: #22c55e; margin-bottom: 15px;">🏆 Winter Championship 2025</h3>
-                <p><strong>Date:</strong> January 15-20, 2025</p>
-                <p><strong>Prize Pool:</strong> ₹51,000</p>
-                <p><strong>Registration Fee:</strong> ₹2,500 per team</p>
-                <p><strong>Last Date:</strong> January 10, 2025</p>
-                <button class="btn-primary" style="margin-top: 20px;" onclick="openBookingModal()">
-                    <i class="fas fa-trophy"></i> Register Now
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section>
-        <div class="container">
-            <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><strong>Address</strong><br>Kushalgarh, Rajasthan, India</div></div>
-                    <div class="contact-item"><i class="fas fa-phone"></i><div><strong>Phone</strong><br><a href="tel:+919876543210" style="color: white; text-decoration: none;">+91 98765 43210</a></div></div>
-                    <div class="contact-item"><i class="fab fa-whatsapp"></i><div><strong>WhatsApp</strong><br><a href="https://wa.me/919876543210" style="color: white; text-decoration: none;">+91 98765 43210</a></div></div>
-                    <div class="contact-item"><i class="fab fa-instagram"></i><div><strong>Instagram</strong><br><a href="#" style="color: white; text-decoration: none;">@panchayatturf</a></div></div>
-                </div>
-                <div class="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118780.20309174073!2d74.3801177!3d23.1476244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39658af2b5189f1b%3A0x6fd9d6d8a6b1c4e2!2sKushalgarh%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Modal -->
-    <div id="bookingModal" class="booking-modal">
-        <div class="booking-container">
-            <span class="close-modal" onclick="closeBookingModal()">&times;</span>
-            <h2 style="margin-bottom: 20px;">Book Your Slot</h2>
-            <div id="bookingSteps">
-                <!-- Step 1: Select Slot -->
-                <div id="step1">
-                    <div class="form-group">
-                        <label>Select Date</label>
-                        <input type="date" id="bookingDate" min="2025-01-01">
-                    </div>
-                    <div class="form-group">
-                        <label>Select Time Slot</label>
-                        <select id="bookingSlot">
-                            <option value="">Select a slot</option>
-                            <option value="6:00 AM - 7:00 AM">6:00 AM - 7:00 AM</option>
-                            <option value="7:00 AM - 8:00 AM">7:00 AM - 8:00 AM</option>
-                            <option value="8:00 AM - 9:00 AM">8:00 AM - 9:00 AM</option>
-                            <option value="5:00 PM - 6:00 PM">5:00 PM - 6:00 PM</option>
-                            <option value="6:00 PM - 7:00 PM">6:00 PM - 7:00 PM</option>
-                            <option value="7:00 PM - 8:00 PM">7:00 PM - 8:00 PM</option>
-                            <option value="8:00 PM - 9:00 PM">8:00 PM - 9:00 PM</option>
-                            <option value="9:00 PM - 10:00 PM">9:00 PM - 10:00 PM</option>
-                        </select>
-                    </div>
-                    <button class="btn-primary" onclick="nextStep()" style="width: 100%;">Continue</button>
-                </div>
-                
-                <!-- Step 2: User Details -->
-                <div id="step2" style="display: none;">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" id="userName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Mobile Number *</label>
-                        <input type="tel" id="userMobile" pattern="[0-9]{10}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Team Name (Optional)</label>
-                        <input type="text" id="teamName">
-                    </div>
-                    <button class="btn-primary" onclick="nextStep()" style="width: 100%;">Continue</button>
-                    <button class="btn-secondary" onclick="prevStep()" style="width: 100%; margin-top: 10px;">Back</button>
-                </div>
-                
-                <!-- Step 3: Payment -->
-                <div id="step3" style="display: none;">
-                    <div style="text-align: center;">
-                        <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                            <i class="fas fa-qrcode" style="font-size: 150px; color: #000;"></i>
-                        </div>
-                        <p><strong>UPI ID:</strong> panchayatturf@okhdfcbank</p>
-                        <p><strong>Amount:</strong> ₹<span id="bookingAmount">800</span></p>
-                        <div class="form-group">
-                            <label>Upload Payment Screenshot</label>
-                            <input type="file" id="paymentScreenshot" accept="image/*">
-                        </div>
-                        <button class="btn-primary" onclick="confirmBooking()" style="width: 100%; margin-top: 20px;">Confirm Booking</button>
-                        <button class="btn-secondary" onclick="prevStep()" style="width: 100%; margin-top: 10px;">Back</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Panchayat Turf. All rights reserved.</p>
-            <p style="margin-top: 10px;">Premium Cricket Turf in Kushalgarh, Rajasthan</p>
-        </div>
-    </footer>
 
     <script>
-        // Slot Data
-        const slots = [
-            '6:00 AM - 7:00 AM', '7:00 AM - 8:00 AM', '8:00 AM - 9:00 AM',
-            '5:00 PM - 6:00 PM', '6:00 PM - 7:00 PM', '7:00 PM - 8:00 PM',
-            '8:00 PM - 9:00 PM', '9:00 PM - 10:00 PM'
+        // ================================================================
+        // 👥 EDIT YOUR 10 PLAYERS HERE
+        // ================================================================
+        const PLAYERS = [
+            "Alex", "Jordan", "Taylor", "Morgan", "Casey",
+            "Riley", "Avery", "Quinn", "Logan", "Ellis"
         ];
-        
-        let bookedSlots = ['6:00 PM - 7:00 PM', '8:00 PM - 9:00 PM']; // Example booked slots
-        let pendingSlots = ['7:00 PM - 8:00 PM']; // Example pending slots
-        
-        // Display slots
-        function displaySlots() {
-            const slotGrid = document.getElementById('slotGrid');
-            slotGrid.innerHTML = '';
-            slots.forEach(slot => {
-                const button = document.createElement('button');
-                button.className = 'slot-btn';
-                button.textContent = slot;
-                if (bookedSlots.includes(slot)) {
-                    button.classList.add('booked');
-                    button.disabled = true;
-                } else if (pendingSlots.includes(slot)) {
-                    button.style.background = '#fbbf24';
-                    button.style.borderColor = '#fbbf24';
-                }
-                button.onclick = () => {
-                    if (!bookedSlots.includes(slot)) {
-                        document.getElementById('bookingSlot').value = slot;
-                        openBookingModal();
-                    }
-                };
-                slotGrid.appendChild(button);
+
+        // ================================================================
+        // 🎯 EDIT YOUR QUESTIONS HERE
+        // ================================================================
+        const QUESTIONS = [
+            { text: "Who has the best style?", category: "👔 STYLE" },
+            { text: "Who is the funniest?", category: "😂 HUMOR" },
+            { text: "Who is the best dancer?", category: "💃 DANCE" },
+            { text: "Who gives the best advice?", category: "🧠 WISDOM" },
+            { text: "Who is most likely to become famous?", category: "🌟 FAME" },
+            { text: "Who has the best singing voice?", category: "🎤 MUSIC" },
+            { text: "Who is the most adventurous?", category: "🌍 ADVENTURE" },
+            { text: "Who is the best cook?", category: "🍳 FOOD" },
+            { text: "Who is the most romantic?", category: "❤️ ROMANCE" },
+            { text: "Who is the best storyteller?", category: "📖 STORIES" },
+            { text: "Who would survive a zombie apocalypse?", category: "🧟 SURVIVAL" },
+            { text: "Who is the most likely to win a Nobel Prize?", category: "🏅 BRAINS" },
+        ];
+        // ================================================================
+
+        // ====== STATE ======
+        let currentIndex = 0;
+        let votes = [];
+        let revealed = false;
+        let isGameOver = false;
+        const totalPlayers = PLAYERS.length;
+
+        // ====== DOM REFS ======
+        const qNumber = document.getElementById('qNumber');
+        const qText = document.getElementById('qText');
+        const playerGrid = document.getElementById('playerGrid');
+        const status = document.getElementById('status');
+        const resultsArea = document.getElementById('resultsArea');
+        const resultsList = document.getElementById('resultsList');
+        const winnerAnnounce = document.getElementById('winnerAnnounce');
+        const revealBtn = document.getElementById('revealBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressFill = document.getElementById('progressFill');
+
+        // ====== RENDER PLAYERS ======
+        function renderPlayers() {
+            playerGrid.innerHTML = '';
+            PLAYERS.forEach((name, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'player-btn';
+                btn.dataset.index = index;
+                btn.textContent = name;
+                btn.onclick = () => vote(index);
+                playerGrid.appendChild(btn);
             });
         }
-        
-        // Countdown Timer
-        function updateCountdown() {
-            const tournamentDate = new Date('January 15, 2025 10:00:00').getTime();
-            const now = new Date().getTime();
-            const diff = tournamentDate - now;
-            
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (86400000)) / (3600000));
-                const minutes = Math.floor((diff % (3600000)) / (60000));
-                const seconds = Math.floor((diff % (60000)) / 1000);
-                
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            }
-        }
-        
-        // Reviews
-        const reviews = [
-            { name: 'Rahul Sharma', rating: 5, text: 'Best turf in Kushalgarh! Excellent facilities and lighting.', team: 'Kushalgarh Kings' },
-            { name: 'Amit Patel', rating: 5, text: 'Very professional management. Easy online booking system.', team: 'Turf Warriors' },
-            { name: 'Vikram Singh', rating: 4, text: 'Great experience playing night matches here.', team: 'Star Cricket Club' }
-        ];
-        
-        function displayReviews() {
-            const container = document.getElementById('reviewsContainer');
-            container.innerHTML = reviews.map(review => `
-                <div class="review-card">
-                    <div class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
-                    <p>"${review.text}"</p>
-                    <h4 style="margin-top: 15px;">${review.name}</h4>
-                    <small style="color: #22c55e;">${review.team}</small>
-                </div>
-            `).join('');
-        }
-        
-        // Booking Steps
-        let currentStep = 1;
-        
-        function openBookingModal() {
-            document.getElementById('bookingModal').classList.add('active');
-            currentStep = 1;
-            showStep();
-        }
-        
-        function closeBookingModal() {
-            document.getElementById('bookingModal').classList.remove('active');
-            currentStep = 1;
-            showStep();
-        }
-        
-        function showStep() {
-            document.getElementById('step1').style.display = currentStep === 1 ? 'block' : 'none';
-            document.getElementById('step2').style.display = currentStep === 2 ? 'block' : 'none';
-            document.getElementById('step3').style.display = currentStep === 3 ? 'block' : 'none';
-        }
-        
-        function nextStep() {
-            if (currentStep === 1) {
-                const slot = document.getElementById('bookingSlot').value;
-                if (!slot) {
-                    alert('Please select a time slot');
-                    return;
-                }
-                const date = document.getElementById('bookingDate').value;
-                if (!date) {
-                    alert('Please select a date');
-                    return;
-                }
-                // Calculate amount (weekend pricing)
-                const selectedDate = new Date(date);
-                const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
-                const amount = isWeekend ? 1200 : 800;
-                document.getElementById('bookingAmount').textContent = amount;
-            } else if (currentStep === 2) {
-                const name = document.getElementById('userName').value;
-                const mobile = document.getElementById('userMobile').value;
-                if (!name || !mobile) {
-                    alert('Please fill all required fields');
-                    return;
-                }
-                if (!/^\d{10}$/.test(mobile)) {
-                    alert('Please enter a valid 10-digit mobile number');
-                    return;
-                }
-            }
-            currentStep++;
-            showStep();
-        }
-        
-        function prevStep() {
-            currentStep--;
-            showStep();
-        }
-        
-        function confirmBooking() {
-            const screenshot = document.getElementById('paymentScreenshot').files[0];
-            if (!screenshot) {
-                alert('Please upload payment screenshot');
+
+        // ====== LOAD QUESTION ======
+        function loadQuestion() {
+            if (currentIndex >= QUESTIONS.length) {
+                showGameOver();
                 return;
             }
-            alert('Booking confirmed! You will receive a confirmation message shortly.');
-            closeBookingModal();
-            // Here you would save to backend
+
+            const q = QUESTIONS[currentIndex];
+            qNumber.textContent = `Question ${currentIndex + 1} of ${QUESTIONS.length}`;
+            qText.innerHTML = `<span class="category">${q.category}</span> ${q.text}`;
+
+            const pct = ((currentIndex) / QUESTIONS.length) * 100;
+            progressFill.style.width = Math.min(pct, 98) + '%';
+
+            // Reset votes
+            votes = [];
+            revealed = false;
+            resultsArea.classList.add('hidden');
+            revealBtn.classList.remove('hidden');
+            nextBtn.classList.add('hidden');
+
+            // Reset player buttons
+            document.querySelectorAll('.player-btn').forEach(btn => {
+                btn.className = 'player-btn';
+                btn.disabled = false;
+                const badge = btn.querySelector('.vote-badge');
+                if (badge) badge.remove();
+            });
+
+            status.innerHTML = '📱 Pass the phone. Everyone votes <span class="highlight">secretly</span>.';
+            status.style.color = '#7a85a8';
+            isGameOver = false;
+
+            qText.classList.remove('fade-in');
+            void qText.offsetWidth;
+            qText.classList.add('fade-in');
         }
-        
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function toggleDarkMode() {
-            document.body.classList.toggle('light-mode');
-            const icon = document.querySelector('.dark-mode-toggle i');
-            if (document.body.classList.contains('light-mode')) {
-                icon.className = 'fas fa-sun';
+
+        // ====== VOTE ======
+        function vote(playerIndex) {
+            if (revealed || isGameOver) return;
+
+            // Check if this player already voted
+            if (votes.includes(playerIndex)) {
+                status.innerHTML = '⚠️ This person already voted. Pass to someone else.';
+                status.style.color = '#e17055';
+                return;
+            }
+
+            // Check if all 10 have voted
+            if (votes.length >= totalPlayers) {
+                status.innerHTML = '✅ All 10 voted! Tap <span class="highlight">Reveal</span>.';
+                status.style.color = '#fdcb6e';
+                return;
+            }
+
+            // Add vote
+            votes.push(playerIndex);
+
+            if (navigator.vibrate) navigator.vibrate(10);
+
+            // Mark button
+            const btns = document.querySelectorAll('.player-btn');
+            const btn = btns[playerIndex];
+            btn.classList.add('voted');
+            const badge = document.createElement('span');
+            badge.className = 'vote-badge';
+            badge.textContent = '✓';
+            btn.appendChild(badge);
+
+            // Update status
+            const remaining = totalPlayers - votes.length;
+            if (remaining === 0) {
+                status.innerHTML = '✅ All 10 voted! Tap <span class="highlight">Reveal</span>.';
+                status.style.color = '#fdcb6e';
+                revealBtn.classList.add('pulse');
+                setTimeout(() => revealBtn.classList.remove('pulse'), 500);
             } else {
-                icon.className = 'fas fa-moon';
+                status.innerHTML = `🔒 ${votes.length} voted. ${remaining} more to go. Pass the phone!`;
+                status.style.color = '#6c5ce7';
             }
         }
-        
-        // Set minimum date for booking
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('bookingDate').min = today;
-        
-        // Initialize
-        displaySlots();
-        displayReviews();
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-        
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('bookingModal');
-            if (event.target === modal) {
-                closeBookingModal();
+
+        // ====== REVEAL ======
+        function reveal() {
+            if (votes.length < totalPlayers) {
+                status.innerHTML = `⚠️ Need ${totalPlayers - votes.length} more votes before revealing!`;
+                status.style.color = '#e17055';
+                return;
+            }
+
+            revealed = true;
+            resultsArea.classList.remove('hidden');
+            revealBtn.classList.add('hidden');
+            nextBtn.classList.remove('hidden');
+
+            // Count votes
+            const counts = {};
+            PLAYERS.forEach((name, i) => {
+                counts[i] = votes.filter(v => v === i).length;
+            });
+
+            // Sort by votes (highest first)
+            const sorted = Object.entries(counts)
+                .sort((a, b) => b[1] - a[1])
+                .map(([idx, count]) => ({
+                    name: PLAYERS[parseInt(idx)],
+                    count: count,
+                    index: parseInt(idx)
+                }));
+
+            const maxVotes = sorted[0].count;
+            const winners = sorted.filter(p => p.count === maxVotes);
+
+            // Build results list
+            let html = '';
+            sorted.forEach((p, i) => {
+                const pct = Math.round((p.count / totalPlayers) * 100);
+                const isWinner = p.count === maxVotes && maxVotes > 0;
+                html += `
+                    <div class="result-item">
+                        <span class="result-name">${p.name}</span>
+                        <div class="result-bar-wrap">
+                            <div class="result-bar-fill ${isWinner ? 'winner' : ''}" style="width:${pct}%;"></div>
+                        </div>
+                        <span class="result-votes">${p.count}</span>
+                    </div>
+                `;
+            });
+            resultsList.innerHTML = html;
+
+            // Winner announcement
+            if (maxVotes === 0) {
+                winnerAnnounce.innerHTML = '😶 No votes cast yet!';
+            } else if (winners.length === 1) {
+                winnerAnnounce.innerHTML = `
+                    🏆 ${winners[0].name} wins!
+                    <span>with ${maxVotes} out of ${totalPlayers} votes</span>
+                `;
+            } else {
+                const names = winners.map(p => p.name).join(' & ');
+                winnerAnnounce.innerHTML = `
+                    🤝 It's a tie between ${names}!
+                    <span>each with ${maxVotes} votes</span>
+                `;
+            }
+
+            status.innerHTML = '📊 Results revealed! Tap Next.';
+            status.style.color = '#fdcb6e';
+
+            resultsArea.classList.remove('fade-in');
+            void resultsArea.offsetWidth;
+            resultsArea.classList.add('fade-in');
+        }
+
+        // ====== NEXT ======
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex >= QUESTIONS.length) {
+                showGameOver();
+            } else {
+                loadQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
+
+        // ====== GAME OVER ======
+        function showGameOver() {
+            isGameOver = true;
+            playerGrid.style.display = 'none';
+            resultsArea.classList.add('hidden');
+            revealBtn.classList.add('hidden');
+            nextBtn.classList.add('hidden');
+
+            qNumber.textContent = '🎉 Game Complete!';
+            qText.innerHTML = `
+                <div style="padding:12px 0;">
+                    <div style="font-size:48px; margin-bottom:12px;">🎊</div>
+                    <h2 style="font-weight:300; font-size:22px; color:#e8edf5;">
+                        You voted on ${QUESTIONS.length} questions!
+                    </h2>
+                    <div style="margin-top:16px; color:#7a85a8; font-size:14px; line-height:1.8;">
+                        Hope you discovered something new about each other.
+                    </div>
+                    <div style="margin-top:20px; font-size:14px; color:#fdcb6e; background:rgba(253,203,110,0.06); padding:16px; border-radius:16px; border:1px solid rgba(253,203,110,0.1);">
+                        💬 The best part? The conversations that follow.
+                    </div>
+                </div>
+            `;
+            status.innerHTML = 'Tap <span class="highlight">Restart</span> to play again.';
+            progressFill.style.width = '100%';
+        }
+
+        // ====== RESET ======
+        function resetGame() {
+            currentIndex = 0;
+            playerGrid.style.display = 'grid';
+            isGameOver = false;
+            renderPlayers();
+            loadQuestion();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ====== KEYBOARD ======
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'r' || e.key === 'R') reveal();
+            else if (e.key === 'n' || e.key === 'N') nextQuestion();
+        });
+
+        // ====== INIT ======
+        renderPlayers();
+        loadQuestion();
     </script>
 </body>
 </html>
