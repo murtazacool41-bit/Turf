@@ -91,7 +91,7 @@
             border-color: var(--primary);
         }
         .setup-screen textarea {
-            min-height: 70px;
+            min-height: 60px;
             resize: vertical;
         }
         .setup-screen .hint {
@@ -147,6 +147,59 @@
             border: 1px solid rgba(108, 92, 231, 0.1);
         }
 
+        /* Mode Toggle */
+        .mode-toggle {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0 8px 0;
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+        .mode-btn:active {
+            transform: scale(0.95);
+        }
+        .mode-btn.active {
+            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.1);
+            color: var(--text);
+        }
+        .mode-btn .mode-icon {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .toggle-options-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 8px;
+            transition: all 0.2s;
+        }
+        .toggle-options-btn:active {
+            transform: scale(0.95);
+        }
+        .toggle-options-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(108, 92, 231, 0.08);
+        }
+
         /* ===== VOTING SCREEN ===== */
         .question-display {
             font-size: 22px;
@@ -199,7 +252,59 @@
             color: var(--primary);
         }
 
-        /* ===== BLANK SCREEN (after vote) ===== */
+        /* ===== FREE TEXT SCREEN ===== */
+        .free-text-area {
+            margin: 12px 0 16px 0;
+        }
+        .free-text-area textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            border: 2px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-size: 16px;
+            font-family: inherit;
+            min-height: 100px;
+            resize: vertical;
+            transition: border 0.3s;
+        }
+        .free-text-area textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .free-text-area textarea::placeholder {
+            color: var(--muted);
+            opacity: 0.5;
+        }
+        .free-text-area .char-count {
+            text-align: right;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        .submit-text-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #fdcb6e, #f39c12);
+            color: #0b0e1a;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .submit-text-btn:active {
+            transform: scale(0.97);
+        }
+        .submit-text-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* ===== BLANK SCREEN ===== */
         .blank-screen {
             display: flex;
             flex-direction: column;
@@ -234,6 +339,8 @@
             max-height: 400px;
             overflow-y: auto;
         }
+
+        /* Vote Mode Results */
         .result-item {
             display: flex;
             justify-content: space-between;
@@ -277,6 +384,38 @@
             min-width: 30px;
             text-align: right;
             font-weight: 600;
+        }
+
+        /* Free Text Results */
+        .free-text-result {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: left;
+        }
+        .free-text-result:last-child {
+            border-bottom: none;
+        }
+        .free-text-result .answer-number {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 300;
+            margin-bottom: 4px;
+        }
+        .free-text-result .answer-text {
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 4px 0;
+        }
+        .free-text-result .answer-text::before {
+            content: '"';
+            color: var(--muted);
+            opacity: 0.3;
+        }
+        .free-text-result .answer-text::after {
+            content: '"';
+            color: var(--muted);
+            opacity: 0.3;
         }
 
         .winner-text {
@@ -394,6 +533,13 @@
                 padding: 11px 14px;
                 min-width: 60px;
             }
+            .mode-btn {
+                font-size: 12px;
+                padding: 8px;
+            }
+            .mode-btn .mode-icon {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -403,12 +549,24 @@
         <!-- ========== SETUP SCREEN ========== -->
         <div id="setupScreen" class="setup-screen">
             <h1>🤫 <span>Secret</span> Vote</h1>
-            <div class="subtitle">Type any question, vote anonymously, reveal results!</div>
+            <div class="subtitle">Two modes: Vote on options OR write free-text answers!</div>
 
-            <!-- Players already saved -->
-            <div class="saved-names-info">
-                ✅ <strong>10 Players Ready:</strong>
-                <div class="player-tags">
+            <!-- Mode Toggle -->
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="voteModeBtn" onclick="setMode('vote')">
+                    <span class="mode-icon">🗳️</span>
+                    Vote Mode
+                </button>
+                <button class="mode-btn" id="freeModeBtn" onclick="setMode('free')">
+                    <span class="mode-icon">✍️</span>
+                    Free Text
+                </button>
+            </div>
+
+            <!-- Default Players -->
+            <div class="saved-names-info" id="defaultPlayersInfo">
+                ✅ <strong>Default Players:</strong>
+                <div class="player-tags" id="defaultPlayerTags">
                     <span class="player-tag">Burhan Kapadia</span>
                     <span class="player-tag">Burhan Tailor</span>
                     <span class="player-tag">Idris</span>
@@ -422,43 +580,63 @@
                 </div>
             </div>
 
+            <!-- Edit Options (only for Vote Mode) -->
+            <button class="toggle-options-btn" id="toggleOptionsBtn" onclick="toggleOptionsMode()">
+                ✏️ Edit Options for This Question
+            </button>
+
+            <div id="customOptionsArea" class="hidden" style="margin-top:12px;">
+                <label for="customOptionsInput">📝 Custom Options (comma separated)</label>
+                <textarea id="customOptionsInput" placeholder="Pizza, Burger, Sushi, Pasta">Pizza, Burger, Sushi, Pasta</textarea>
+                <div class="hint">Enter 2-10 options. Leave blank to use default players.</div>
+            </div>
+
             <div style="margin-top:16px; border-top:1px solid var(--border); padding-top:16px;">
                 <label for="questionInput">📝 Question (type on the spot)</label>
                 <input type="text" id="questionInput" placeholder="e.g. Who has the best style?" value="Who has the best style?">
                 
-                <label for="maxVotesInput">🔢 How many people are voting? (2-10)</label>
+                <label for="maxVotesInput">🔢 How many people are answering? (2-10)</label>
                 <input type="number" id="maxVotesInput" min="2" max="10" value="10">
                 
                 <button class="setup-btn" onclick="startNewQuestion()" style="margin-top:12px; background:linear-gradient(135deg, #fdcb6e, #f39c12); color:#0b0e1a;">
-                    🚀 Start Voting!
+                    🚀 Start!
                 </button>
             </div>
 
-            <div class="footer" style="margin-top:20px;">pass &amp; play • votes vanish after each tap</div>
+            <div class="footer" style="margin-top:20px;">pass &amp; play • answers vanish after each person</div>
         </div>
 
-        <!-- ========== VOTING SCREEN ========== -->
+        <!-- ========== VOTING / FREE TEXT SCREEN ========== -->
         <div id="votingScreen" class="hidden">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <span style="color:var(--muted); font-size:13px;" id="voteCounter">Vote 1 of 10</span>
+                <span style="color:var(--muted); font-size:13px;" id="voteCounter">Person 1 of 10</span>
+                <span style="color:var(--muted); font-size:12px; background:rgba(108,92,231,0.1); padding:4px 12px; border-radius:50px;" id="modeLabel">🗳️ Vote</span>
                 <button class="control-btn btn-back" onclick="backToSetup()" style="flex:0; padding:6px 14px; font-size:12px;">✕</button>
             </div>
 
             <div class="question-display" id="questionDisplay">Who has the best style?</div>
 
-            <div class="vote-status" id="voteStatus">👤 <span class="highlight">Pass the phone</span> and tap your choice</div>
+            <div class="vote-status" id="voteStatus">👤 <span class="highlight">Pass the phone</span> and answer</div>
 
+            <!-- Vote Mode Options -->
             <div class="options-grid" id="optionsGrid"></div>
 
-            <button class="control-btn btn-reveal" id="revealBtn" onclick="revealVotes()" style="width:100%;">👀 Reveal All Votes</button>
+            <!-- Free Text Mode -->
+            <div class="free-text-area hidden" id="freeTextArea">
+                <textarea id="freeTextInput" placeholder="Type your answer here..."></textarea>
+                <div class="char-count"><span id="charCount">0</span> characters</div>
+                <button class="submit-text-btn" id="submitTextBtn" onclick="submitFreeText()">✍️ Submit Answer</button>
+            </div>
+
+            <button class="control-btn btn-reveal" id="revealBtn" onclick="revealVotes()" style="width:100%;">👀 Reveal All Answers</button>
         </div>
 
-        <!-- ========== BLANK SCREEN (after voting) ========== -->
+        <!-- ========== BLANK SCREEN ========== -->
         <div id="blankScreen" class="hidden blank-screen">
             <div class="big-icon">🙈</div>
-            <div class="message">Vote recorded!</div>
+            <div class="message">Answer recorded!</div>
             <div class="sub-message">Pass the phone to the next person</div>
-            <button class="control-btn btn-next" onclick="showVotingScreen()" style="margin-top:20px; width:100%;">➡️ Next Voter</button>
+            <button class="control-btn btn-next" onclick="showVotingScreen()" style="margin-top:20px; width:100%;">➡️ Next Person</button>
         </div>
 
         <!-- ========== RESULTS SCREEN ========== -->
@@ -478,12 +656,12 @@
             </div>
         </div>
 
-        <div class="footer" id="footerText">secret vote • no one sees your choice</div>
+        <div class="footer" id="footerText">secret answers • no one sees what you wrote</div>
     </div>
 
     <script>
         // ================================================================
-        // 👥 YOUR 10 PLAYERS - PRE-LOADED!
+        // 👥 DEFAULT PLAYERS
         // ================================================================
         const DEFAULT_PLAYERS = [
             "Burhan Kapadia",
@@ -501,12 +679,16 @@
         // ================================================================
         // STATE
         // ================================================================
+        let gameMode = 'vote'; // 'vote' or 'free'
         let savedPlayers = [...DEFAULT_PLAYERS];
         let currentQuestion = '';
         let maxVotes = 10;
         let votes = [];
+        let freeTextAnswers = [];
         let currentVoteIndex = 0;
         let isRevealed = false;
+        let useCustomOptions = false;
+        let customOptionsText = '';
 
         // ================================================================
         // DOM REFS
@@ -518,32 +700,115 @@
 
         const questionInput = document.getElementById('questionInput');
         const maxVotesInput = document.getElementById('maxVotesInput');
+        const customOptionsInput = document.getElementById('customOptionsInput');
+        const customOptionsArea = document.getElementById('customOptionsArea');
+        const toggleOptionsBtn = document.getElementById('toggleOptionsBtn');
+        const voteModeBtn = document.getElementById('voteModeBtn');
+        const freeModeBtn = document.getElementById('freeModeBtn');
 
         const questionDisplay = document.getElementById('questionDisplay');
         const optionsGrid = document.getElementById('optionsGrid');
+        const freeTextArea = document.getElementById('freeTextArea');
+        const freeTextInput = document.getElementById('freeTextInput');
+        const submitTextBtn = document.getElementById('submitTextBtn');
+        const charCount = document.getElementById('charCount');
         const voteCounter = document.getElementById('voteCounter');
         const voteStatus = document.getElementById('voteStatus');
         const revealBtn = document.getElementById('revealBtn');
+        const modeLabel = document.getElementById('modeLabel');
 
         const resultsQuestion = document.getElementById('resultsQuestion');
         const resultsArea = document.getElementById('resultsArea');
         const winnerText = document.getElementById('winnerText');
 
         // ================================================================
+        // MODE TOGGLE
+        // ================================================================
+
+        function setMode(mode) {
+            gameMode = mode;
+            if (mode === 'vote') {
+                voteModeBtn.classList.add('active');
+                freeModeBtn.classList.remove('active');
+                toggleOptionsBtn.classList.remove('hidden');
+                if (useCustomOptions) {
+                    customOptionsArea.classList.remove('hidden');
+                } else {
+                    customOptionsArea.classList.add('hidden');
+                }
+                document.getElementById('defaultPlayersInfo').classList.remove('hidden');
+                // Show max voters label
+                document.querySelector('label[for="maxVotesInput"]').textContent = '🔢 How many people are voting? (2-10)';
+                modeLabel.textContent = '🗳️ Vote';
+            } else {
+                freeModeBtn.classList.add('active');
+                voteModeBtn.classList.remove('active');
+                toggleOptionsBtn.classList.add('hidden');
+                customOptionsArea.classList.add('hidden');
+                document.getElementById('defaultPlayersInfo').classList.add('hidden');
+                document.querySelector('label[for="maxVotesInput"]').textContent = '🔢 How many people are answering? (2-10)';
+                modeLabel.textContent = '✍️ Free Text';
+            }
+        }
+
+        // ================================================================
+        // TOGGLE CUSTOM OPTIONS
+        // ================================================================
+
+        function toggleOptionsMode() {
+            if (gameMode === 'free') return;
+            useCustomOptions = !useCustomOptions;
+            if (useCustomOptions) {
+                customOptionsArea.classList.remove('hidden');
+                toggleOptionsBtn.textContent = '🔙 Use Default Players';
+                toggleOptionsBtn.classList.add('active');
+                customOptionsInput.focus();
+                if (!customOptionsInput.value.trim()) {
+                    customOptionsInput.value = 'Pizza, Burger, Sushi, Pasta, Tacos';
+                }
+            } else {
+                customOptionsArea.classList.add('hidden');
+                toggleOptionsBtn.textContent = '✏️ Edit Options for This Question';
+                toggleOptionsBtn.classList.remove('active');
+            }
+        }
+
+        // ================================================================
         // CORE FUNCTIONS
         // ================================================================
 
         function startNewQuestion() {
-            if (savedPlayers.length === 0) {
-                alert('No players found!');
-                return;
-            }
-
             currentQuestion = questionInput.value.trim() || 'Who gets your vote?';
-            maxVotes = parseInt(maxVotesInput.value) || savedPlayers.length;
-            maxVotes = Math.max(2, Math.min(savedPlayers.length, maxVotes));
+            maxVotes = parseInt(maxVotesInput.value) || 10;
+            
+            let optionsToUse = [];
+            
+            if (gameMode === 'vote') {
+                if (useCustomOptions) {
+                    const raw = customOptionsInput.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
+                    if (raw.length < 2) {
+                        alert('Please enter at least 2 custom options!');
+                        return;
+                    }
+                    if (raw.length > 10) {
+                        alert('Maximum 10 options allowed!');
+                        return;
+                    }
+                    optionsToUse = raw;
+                    customOptionsText = customOptionsInput.value;
+                } else {
+                    optionsToUse = [...DEFAULT_PLAYERS];
+                }
+            } else {
+                // Free text mode - no options needed
+                optionsToUse = [];
+            }
+            
+            savedPlayers = optionsToUse;
+            maxVotes = Math.max(2, Math.min(10, maxVotes));
 
             votes = [];
+            freeTextAnswers = [];
             currentVoteIndex = 0;
             isRevealed = false;
 
@@ -557,38 +822,69 @@
 
         function renderVotingScreen() {
             questionDisplay.textContent = currentQuestion;
-            voteCounter.textContent = `Vote ${currentVoteIndex + 1} of ${maxVotes}`;
+            voteCounter.textContent = `Person ${currentVoteIndex + 1} of ${maxVotes}`;
 
-            optionsGrid.innerHTML = '';
-            savedPlayers.forEach((name, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = name;
-                btn.dataset.index = idx;
-                btn.onclick = () => castVote(idx);
-                optionsGrid.appendChild(btn);
-            });
-
-            voteStatus.innerHTML = `👤 <span class="highlight">Pass the phone</span> and tap your choice`;
-            voteStatus.style.color = '#7a85a8';
-
-            if (currentVoteIndex >= maxVotes) {
+            if (gameMode === 'vote') {
+                optionsGrid.classList.remove('hidden');
+                freeTextArea.classList.add('hidden');
                 revealBtn.classList.remove('hidden');
-                voteStatus.innerHTML = `✅ All ${maxVotes} voted! Tap <span class="highlight">Reveal</span>`;
-                voteStatus.style.color = '#fdcb6e';
+                
+                optionsGrid.innerHTML = '';
+                savedPlayers.forEach((name, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = name;
+                    btn.dataset.index = idx;
+                    btn.onclick = () => castVote(idx);
+                    optionsGrid.appendChild(btn);
+                });
+
+                voteStatus.innerHTML = `👤 <span class="highlight">Pass the phone</span> and tap your choice`;
+
+                if (currentVoteIndex >= maxVotes) {
+                    revealBtn.classList.remove('hidden');
+                    voteStatus.innerHTML = `✅ All ${maxVotes} voted! Tap <span class="highlight">Reveal</span>`;
+                    voteStatus.style.color = '#fdcb6e';
+                } else {
+                    revealBtn.classList.add('hidden');
+                    voteStatus.style.color = '#7a85a8';
+                }
+
+                document.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.className = 'option-btn';
+                    btn.disabled = false;
+                });
+
             } else {
+                // Free Text Mode
+                optionsGrid.classList.add('hidden');
+                freeTextArea.classList.remove('hidden');
                 revealBtn.classList.add('hidden');
+                freeTextInput.value = '';
+                freeTextInput.disabled = false;
+                submitTextBtn.disabled = false;
+                updateCharCount();
+                
+                if (currentVoteIndex >= maxVotes) {
+                    freeTextArea.classList.add('hidden');
+                    revealBtn.classList.remove('hidden');
+                    voteStatus.innerHTML = `✅ All ${maxVotes} answered! Tap <span class="highlight">Reveal</span>`;
+                    voteStatus.style.color = '#fdcb6e';
+                } else {
+                    voteStatus.innerHTML = `✍️ <span class="highlight">Pass the phone</span> and type your answer`;
+                    voteStatus.style.color = '#7a85a8';
+                    freeTextInput.focus();
+                }
             }
 
             votingScreen.classList.remove('hidden');
             blankScreen.classList.add('hidden');
             resultsScreen.classList.add('hidden');
-
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.className = 'option-btn';
-                btn.disabled = false;
-            });
         }
+
+        // ================================================================
+        // VOTE MODE
+        // ================================================================
 
         function castVote(optionIndex) {
             if (isRevealed) return;
@@ -615,13 +911,51 @@
             }, 300);
         }
 
+        // ================================================================
+        // FREE TEXT MODE
+        // ================================================================
+
+        function updateCharCount() {
+            charCount.textContent = freeTextInput.value.length;
+        }
+
+        function submitFreeText() {
+            if (isRevealed) return;
+            if (currentVoteIndex >= maxVotes) {
+                alert('All answers already submitted! Tap Reveal.');
+                return;
+            }
+
+            const text = freeTextInput.value.trim();
+            if (!text) {
+                alert('Please write something before submitting!');
+                return;
+            }
+
+            freeTextAnswers.push(text);
+            currentVoteIndex++;
+
+            if (navigator.vibrate) navigator.vibrate(12);
+
+            freeTextInput.disabled = true;
+            submitTextBtn.disabled = true;
+
+            setTimeout(() => {
+                showBlankScreen();
+            }, 300);
+        }
+
+        // ================================================================
+        // BLANK SCREEN
+        // ================================================================
+
         function showBlankScreen() {
             votingScreen.classList.add('hidden');
             blankScreen.classList.remove('hidden');
 
             const remaining = maxVotes - currentVoteIndex;
             if (remaining === 0) {
-                document.querySelector('#blankScreen .message').textContent = '🎉 All votes recorded!';
+                document.querySelector('#blankScreen .message').textContent = '🎉 All answers recorded!';
                 document.querySelector('#blankScreen .sub-message').textContent = 'Tap "Next" to see results';
                 document.querySelector('#blankScreen .btn-next').textContent = '👀 Reveal Results';
                 document.querySelector('#blankScreen .btn-next').onclick = function() {
@@ -631,10 +965,11 @@
                     }
                 };
             } else {
-                document.querySelector('#blankScreen .message').textContent = '🙈 Vote recorded!';
+                const modeText = gameMode === 'vote' ? 'vote' : 'answer';
+                document.querySelector('#blankScreen .message').textContent = `🙈 ${modeText === 'vote' ? 'Vote' : 'Answer'} recorded!`;
                 document.querySelector('#blankScreen .sub-message').textContent =
-                    `Pass the phone to the next person (${remaining} more votes needed)`;
-                document.querySelector('#blankScreen .btn-next').textContent = '➡️ Next Voter';
+                    `Pass the phone to the next person (${remaining} more ${modeText}s needed)`;
+                document.querySelector('#blankScreen .btn-next').textContent = '➡️ Next Person';
                 document.querySelector('#blankScreen .btn-next').onclick = showVotingScreen;
             }
         }
@@ -654,7 +989,7 @@
         function revealVotes() {
             if (currentVoteIndex < maxVotes) {
                 const remaining = maxVotes - currentVoteIndex;
-                alert(`Need ${remaining} more vote${remaining > 1 ? 's' : ''} before revealing!`);
+                alert(`Need ${remaining} more answer${remaining > 1 ? 's' : ''} before revealing!`);
                 return;
             }
 
@@ -665,52 +1000,83 @@
 
             resultsQuestion.textContent = `"${currentQuestion}"`;
 
-            const counts = {};
-            savedPlayers.forEach((name, idx) => {
-                counts[idx] = votes.filter(v => v === idx).length;
-            });
+            if (gameMode === 'vote') {
+                // Vote Mode Results
+                const counts = {};
+                savedPlayers.forEach((name, idx) => {
+                    counts[idx] = votes.filter(v => v === idx).length;
+                });
 
-            const sorted = Object.entries(counts)
-                .sort((a, b) => b[1] - a[1])
-                .map(([idx, count]) => ({
-                    name: savedPlayers[parseInt(idx)],
-                    count: count,
-                    index: parseInt(idx)
-                }));
+                const sorted = Object.entries(counts)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([idx, count]) => ({
+                        name: savedPlayers[parseInt(idx)],
+                        count: count,
+                        index: parseInt(idx)
+                    }));
 
-            const maxCount = sorted.length > 0 ? sorted[0].count : 0;
-            const winners = sorted.filter(p => p.count === maxCount && maxCount > 0);
+                const maxCount = sorted.length > 0 ? sorted[0].count : 0;
+                const winners = sorted.filter(p => p.count === maxCount && maxCount > 0);
 
-            let html = '';
-            sorted.forEach((p) => {
-                const pct = maxVotes > 0 ? Math.round((p.count / maxVotes) * 100) : 0;
-                const isWinner = p.count === maxCount && maxCount > 0;
-                html += `
-                    <div class="result-item">
-                        <span class="result-name">${p.name}</span>
-                        <div class="result-bar-wrap">
-                            <div class="result-bar-fill ${isWinner ? 'winner' : ''}" style="width:${pct}%;"></div>
+                let html = '';
+                sorted.forEach((p) => {
+                    const pct = maxVotes > 0 ? Math.round((p.count / maxVotes) * 100) : 0;
+                    const isWinner = p.count === maxCount && maxCount > 0;
+                    html += `
+                        <div class="result-item">
+                            <span class="result-name">${p.name}</span>
+                            <div class="result-bar-wrap">
+                                <div class="result-bar-fill ${isWinner ? 'winner' : ''}" style="width:${pct}%;"></div>
+                            </div>
+                            <span class="result-votes">${p.count}</span>
                         </div>
-                        <span class="result-votes">${p.count}</span>
-                    </div>
-                `;
-            });
-            resultsArea.innerHTML = html;
+                    `;
+                });
+                resultsArea.innerHTML = html;
 
-            if (maxCount === 0) {
-                winnerText.innerHTML = '😶 No votes cast!';
-            } else if (winners.length === 1) {
-                winnerText.innerHTML = `
-                    🏆 ${winners[0].name} wins!
-                    <span>with ${maxCount} out of ${maxVotes} votes</span>
-                `;
+                if (maxCount === 0) {
+                    winnerText.innerHTML = '😶 No votes cast!';
+                } else if (winners.length === 1) {
+                    winnerText.innerHTML = `
+                        🏆 ${winners[0].name} wins!
+                        <span>with ${maxCount} out of ${maxVotes} votes</span>
+                    `;
+                } else {
+                    const names = winners.map(p => p.name).join(' & ');
+                    winnerText.innerHTML = `
+                        🤝 It's a tie between ${names}!
+                        <span>each with ${maxCount} votes</span>
+                    `;
+                }
+
             } else {
-                const names = winners.map(p => p.name).join(' & ');
+                // Free Text Mode Results
+                let html = '';
+                freeTextAnswers.forEach((text, idx) => {
+                    html += `
+                        <div class="free-text-result">
+                            <div class="answer-number">✍️ Answer ${idx + 1}</div>
+                            <div class="answer-text">${escapeHtml(text)}</div>
+                        </div>
+                    `;
+                });
+                resultsArea.innerHTML = html;
+
                 winnerText.innerHTML = `
-                    🤝 It's a tie between ${names}!
-                    <span>each with ${maxCount} votes</span>
+                    📝 ${freeTextAnswers.length} answers submitted!
+                    <span>Read through and discuss together</span>
                 `;
             }
+        }
+
+        // ================================================================
+        // HELPERS
+        // ================================================================
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         // ================================================================
@@ -726,9 +1092,13 @@
             if (currentQuestion) {
                 questionInput.value = currentQuestion;
             }
-            if (savedPlayers.length > 0) {
-                maxVotesInput.value = maxVotes;
-                maxVotesInput.max = savedPlayers.length;
+            maxVotesInput.value = maxVotes;
+            
+            if (useCustomOptions && customOptionsText) {
+                customOptionsInput.value = customOptionsText;
+                customOptionsArea.classList.remove('hidden');
+                toggleOptionsBtn.textContent = '🔙 Use Default Players';
+                toggleOptionsBtn.classList.add('active');
             }
             
             questionInput.focus();
@@ -739,10 +1109,17 @@
             savedPlayers = [...DEFAULT_PLAYERS];
             questionInput.value = '';
             maxVotesInput.value = '10';
+            customOptionsInput.value = '';
+            customOptionsArea.classList.add('hidden');
+            useCustomOptions = false;
+            toggleOptionsBtn.textContent = '✏️ Edit Options for This Question';
+            toggleOptionsBtn.classList.remove('active');
             votes = [];
+            freeTextAnswers = [];
             currentVoteIndex = 0;
             isRevealed = false;
             
+            setMode('vote');
             setupScreen.classList.remove('hidden');
             votingScreen.classList.add('hidden');
             blankScreen.classList.add('hidden');
@@ -756,25 +1133,37 @@
         // ================================================================
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !setupScreen.classList.contains('hidden')) {
-                if (document.activeElement === questionInput || document.activeElement === maxVotesInput) {
+                if (document.activeElement === questionInput || 
+                    document.activeElement === maxVotesInput ||
+                    document.activeElement === customOptionsInput) {
                     startNewQuestion();
                 }
             }
             if ((e.key === 'r' || e.key === 'R') && !votingScreen.classList.contains('hidden')) {
                 revealVotes();
             }
+            if (e.key === 'Enter' && !freeTextArea.classList.contains('hidden')) {
+                if (document.activeElement === freeTextInput && !submitTextBtn.disabled) {
+                    submitFreeText();
+                }
+            }
         });
+
+        // ================================================================
+        // AUTO-CHARACTER COUNT
+        // ================================================================
+        freeTextInput.addEventListener('input', updateCharCount);
 
         // ================================================================
         // INIT
         // ================================================================
         console.log('🔮 Secret Vote ready!');
-        console.log('👥 Players:', savedPlayers.join(', '));
-        console.log('💡 Type any question and start voting!');
+        console.log('👥 Two modes: Vote 🗳️ or Free Text ✍️');
+        console.log('💡 Toggle between modes and start asking!');
         
-        // Pre-fill default question
         questionInput.value = 'Who has the best style?';
         maxVotesInput.value = '10';
+        setMode('vote');
     </script>
 </body>
 </html>
