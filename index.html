@@ -20,6 +20,7 @@
             --gold: #fdcb6e;
             --green: #48bb78;
             --red: #fc8181;
+            --orange: #ed8936;
             --shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             --border: #1e2640;
         }
@@ -116,24 +117,24 @@
             background: rgba(253, 203, 110, 0.05);
         }
 
-        /* ===== COUPLE GAME - TEAM SELECT ===== */
+        /* ===== TEAM SELECT SCREEN ===== */
         .team-select {
-            margin: 16px 0;
+            padding: 10px 0;
         }
         .team-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 12px 0;
+            gap: 12px;
+            margin: 20px 0;
         }
         .team-btn {
-            padding: 16px;
+            padding: 20px 12px;
             border: 2px solid var(--border);
-            border-radius: 14px;
+            border-radius: 16px;
             background: rgba(255, 255, 255, 0.03);
             color: var(--text);
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             touch-action: manipulation;
@@ -141,18 +142,27 @@
         .team-btn:active {
             transform: scale(0.95);
         }
+        .team-btn .team-emoji {
+            display: block;
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+        .team-btn .team-score {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--muted);
+            margin-top: 4px;
+        }
         .team-btn.active {
             border-color: var(--gold);
             background: rgba(253, 203, 110, 0.08);
-            box-shadow: 0 0 20px rgba(253, 203, 110, 0.05);
         }
-        .team-btn .team-emoji {
-            display: block;
-            font-size: 24px;
-            margin-bottom: 4px;
+        .team-btn.has-score {
+            border-color: rgba(253, 203, 110, 0.2);
         }
 
-        /* ===== SETUP SCREEN (reused) ===== */
+        /* ===== COUPLE GAME - SETUP ===== */
         .setup-screen {
             text-align: left;
         }
@@ -207,7 +217,39 @@
             transform: scale(0.97);
         }
 
-        /* ===== VOTING SCREEN ===== */
+        .mode-toggle {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0 8px 0;
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+        .mode-btn:active {
+            transform: scale(0.95);
+        }
+        .mode-btn.active {
+            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.1);
+            color: var(--text);
+        }
+        .mode-btn .mode-icon {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        /* ===== COUPLE GAME - VOTING ===== */
         .question-display {
             font-size: 22px;
             font-weight: 600;
@@ -407,6 +449,10 @@
             background: rgba(252, 129, 129, 0.1);
             border: 1px solid rgba(252, 129, 129, 0.2);
         }
+        .couple-result.manual-match {
+            background: rgba(237, 137, 54, 0.1);
+            border: 1px solid rgba(237, 137, 54, 0.2);
+        }
         .couple-result .player-label {
             color: var(--muted);
             font-size: 13px;
@@ -429,6 +475,9 @@
         .couple-result .match-status.no-match-text {
             color: var(--red);
         }
+        .couple-result .match-status.manual-text {
+            color: var(--orange);
+        }
 
         .winner-text {
             margin-top: 14px;
@@ -446,6 +495,27 @@
             font-weight: 400;
             color: var(--muted);
             margin-top: 4px;
+        }
+
+        /* Manual Match Button */
+        .manual-match-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .manual-match-btn:active {
+            transform: scale(0.97);
+        }
+        .manual-match-btn.no-match-btn {
+            background: linear-gradient(135deg, #fc8181, #e53e3e);
         }
 
         /* ===== POINTS TABLE ===== */
@@ -542,6 +612,10 @@
             color: var(--muted);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+        .btn-finish {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
         .hidden {
             display: none !important;
         }
@@ -599,11 +673,14 @@
                 font-size: 17px;
             }
             .team-grid {
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr;
             }
             .team-btn {
-                font-size: 13px;
-                padding: 12px 8px;
+                font-size: 15px;
+                padding: 14px 10px;
+            }
+            .team-btn .team-emoji {
+                font-size: 26px;
             }
         }
     </style>
@@ -636,75 +713,65 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- COUPLE GAME - TEAM SELECT -->
+        <!-- TEAM SELECT SCREEN -->
         <!-- ========================================================== -->
-        <div id="teamSelectScreen" class="hidden">
+        <div id="teamSelectScreen" class="hidden team-select">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <h2 style="color:var(--text); font-size:20px;">💑 Choose Team</h2>
+                <h2 style="color:var(--text); font-size:20px;">💑 Select Team</h2>
                 <button class="control-btn btn-home" onclick="goHome()" style="flex:0; padding:6px 14px; font-size:12px;">🏠</button>
             </div>
             <div class="subtitle">Which couple is playing?</div>
 
             <div class="team-grid" id="teamGrid">
-                <button class="team-btn" data-team="Babji" onclick="selectTeam('Babji')">
-                    <span class="team-emoji">👨‍👩‍👦</span>
-                    Babji
-                </button>
-                <button class="team-btn" data-team="Kapadia" onclick="selectTeam('Kapadia')">
-                    <span class="team-emoji">👨‍👩‍👧</span>
-                    Kapadia
-                </button>
-                <button class="team-btn" data-team="Sameti" onclick="selectTeam('Sameti')">
-                    <span class="team-emoji">👨‍👩‍👧‍👦</span>
-                    Sameti
-                </button>
-                <button class="team-btn" data-team="Tailor" onclick="selectTeam('Tailor')">
-                    <span class="team-emoji">👨‍👩‍👦</span>
-                    Tailor
-                </button>
-                <button class="team-btn" data-team="Tanda" onclick="selectTeam('Tanda')">
-                    <span class="team-emoji">👨‍👩‍👧</span>
-                    Tanda
-                </button>
+                <!-- Generated by JS -->
             </div>
 
             <div style="margin-top:16px;">
                 <button class="control-btn btn-points" onclick="showPointsTable()" style="width:100%;">🏆 View Points Table</button>
             </div>
 
-            <div class="footer" style="margin-top:16px;">select a team to start</div>
+            <div class="footer" style="margin-top:16px;">select a team to start their round</div>
         </div>
 
         <!-- ========================================================== -->
-        <!-- COUPLE GAME - SETUP -->
+        <!-- COUPLE GAME - SETUP (Question Entry) -->
         <!-- ========================================================== -->
         <div id="coupleSetupScreen" class="hidden setup-screen">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <h2 style="color:var(--text); font-size:18px;">💑 <span id="currentTeamDisplay">Babji</span></h2>
-                <button class="control-btn btn-home" onclick="showTeamSelect()" style="flex:0; padding:6px 14px; font-size:12px;">⬅️</button>
+                <div>
+                    <h2 style="color:var(--text); font-size:18px;">💑 <span id="currentTeamDisplay">Babji</span></h2>
+                    <div style="color:var(--muted); font-size:13px;" id="questionCounterDisplay">Question 1 of 5</div>
+                </div>
+                <button class="control-btn btn-back" onclick="confirmEndTeamRound()" style="flex:0; padding:6px 14px; font-size:12px;">⬅️ End Round</button>
             </div>
 
-            <div class="mode-toggle" style="display:flex; gap:10px; margin:12px 0 8px 0;">
-                <button class="mode-btn active" id="coupleVoteModeBtn" onclick="setCoupleMode('vote')" style="flex:1; padding:10px; border:2px solid var(--border); border-radius:12px; background:rgba(255,255,255,0.03); color:var(--muted); font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s;">
-                    <span style="display:block; font-size:24px; margin-bottom:4px;">🗳️</span>
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="coupleVoteModeBtn" onclick="setCoupleMode('vote')">
+                    <span class="mode-icon">🗳️</span>
                     Vote Mode
                 </button>
-                <button class="mode-btn" id="coupleFreeModeBtn" onclick="setCoupleMode('free')" style="flex:1; padding:10px; border:2px solid var(--border); border-radius:12px; background:rgba(255,255,255,0.03); color:var(--muted); font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s;">
-                    <span style="display:block; font-size:24px; margin-bottom:4px;">✍️</span>
+                <button class="mode-btn" id="coupleFreeModeBtn" onclick="setCoupleMode('free')">
+                    <span class="mode-icon">✍️</span>
                     Free Text
                 </button>
             </div>
 
-            <label for="coupleQuestionInput">📝 Question</label>
+            <label for="coupleQuestionInput">📝 Question <span id="questionNumberLabel">#1</span></label>
             <input type="text" id="coupleQuestionInput" placeholder="e.g. What's your favorite movie?" value="">
 
-            <label for="coupleOptionsInput">📝 Options (comma separated) - for Vote Mode only</label>
-            <textarea id="coupleOptionsInput" placeholder="Option 1, Option 2, Option 3">Pizza, Burger, Sushi, Pasta</textarea>
-            <div class="hint">Enter 2-10 options. Only used in Vote Mode.</div>
+            <div id="coupleOptionsSection">
+                <label for="coupleOptionsInput">📝 Options (comma separated) - for Vote Mode only</label>
+                <textarea id="coupleOptionsInput" placeholder="Option 1, Option 2, Option 3">Pizza, Burger, Sushi, Pasta</textarea>
+                <div class="hint">Enter 2-10 options. Only used in Vote Mode.</div>
+            </div>
 
-            <button class="setup-btn" onclick="startCoupleGame()" style="margin-top:12px; background:linear-gradient(135deg, #fdcb6e, #f39c12); color:#0b0e1a;">
-                🚀 Start Round!
+            <button class="setup-btn" onclick="startCoupleRound()" style="margin-top:12px; background:linear-gradient(135deg, #fdcb6e, #f39c12); color:#0b0e1a;">
+                🚀 Ask This Question
             </button>
+
+            <div style="margin-top:12px; display:flex; gap:10px;">
+                <button class="control-btn btn-finish" onclick="finishTeamRound()" style="flex:1;">🏁 Finish &amp; See Score</button>
+            </div>
 
             <div class="footer" style="margin-top:16px;">pass &amp; play • answers vanish after each person</div>
         </div>
@@ -745,7 +812,7 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- COUPLE GAME - RESULTS -->
+        <!-- COUPLE GAME - QUESTION RESULTS -->
         <!-- ========================================================== -->
         <div id="coupleResultsScreen" class="hidden">
             <h2 style="color:var(--text); font-size:20px; margin-bottom:4px;">💑 Results</h2>
@@ -753,6 +820,16 @@
             <div style="color:var(--muted); font-size:13px; margin-bottom:12px;" id="coupleResultsQuestion">"What's your favorite movie?"</div>
 
             <div class="results-area" id="coupleResultsArea"></div>
+
+            <div id="manualMatchSection" class="hidden" style="margin-top:12px;">
+                <div style="color:var(--text); font-size:15px; font-weight:500; margin-bottom:8px;">🤔 Did their answers mean the same thing?</div>
+                <div style="display:flex; gap:10px;">
+                    <button class="manual-match-btn" onclick="manualMatch(true)" style="flex:1;">✅ Yes, they match!</button>
+                    <button class="manual-match-btn no-match-btn" onclick="manualMatch(false)" style="flex:1;">❌ No, they don't</button>
+                </div>
+                <div style="color:var(--muted); font-size:12px; margin-top:6px;">Use this if answers are spelled differently or use short forms</div>
+            </div>
+
             <div class="winner-text" id="coupleWinnerText">
                 🎉 Match!
                 <span>+1 point for Babji!</span>
@@ -760,8 +837,31 @@
 
             <div class="controls">
                 <button class="control-btn btn-new-question" onclick="showCoupleSetup()">➡️ Next Question</button>
-                <button class="control-btn btn-points" onclick="showPointsTable()">🏆 Points</button>
-                <button class="control-btn btn-home" onclick="showTeamSelect()">⬅️ Teams</button>
+                <button class="control-btn btn-finish" onclick="finishTeamRound()">🏁 Finish Round</button>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- COUPLE GAME - FINAL SCORE -->
+        <!-- ========================================================== -->
+        <div id="coupleFinalScreen" class="hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h2 style="color:var(--text); font-size:20px;">🏁 Round Complete!</h2>
+                <button class="control-btn btn-home" onclick="showTeamSelect()" style="flex:0; padding:6px 14px; font-size:12px;">⬅️ Teams</button>
+            </div>
+
+            <div style="font-size:48px; margin:16px 0;" id="finalEmoji">🎉</div>
+            <div style="font-size:28px; font-weight:700; color:var(--text);" id="finalTeamName">Babji</div>
+            <div style="font-size:16px; color:var(--muted); margin:4px 0;">Final Score</div>
+            <div style="font-size:56px; font-weight:800; color:var(--gold);" id="finalScore">4/5</div>
+            <div style="font-size:16px; color:var(--muted); margin-top:8px;" id="finalMessage">Amazing teamwork! 💪</div>
+
+            <div class="results-area" style="margin-top:16px; text-align:left;" id="finalResultsList"></div>
+
+            <div class="controls" style="margin-top:16px;">
+                <button class="control-btn btn-new-question" onclick="showTeamSelect()">⬅️ Back to Teams</button>
+                <button class="control-btn btn-points" onclick="showPointsTable()">🏆 Points Table</button>
+                <button class="control-btn btn-home" onclick="goHome()">🏠 Home</button>
             </div>
         </div>
 
@@ -797,9 +897,8 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- SUPER 10 - Full Game (reused from earlier) -->
+        <!-- SUPER 10 - Full Game -->
         <!-- ========================================================== -->
-        <!-- SUPER 10 SETUP -->
         <div id="super10SetupScreen" class="hidden setup-screen">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h2 style="color:var(--text); font-size:20px;">🎯 Super 10</h2>
@@ -902,6 +1001,13 @@
         ];
 
         const COUPLE_TEAMS = ["Babji", "Kapadia", "Sameti", "Tailor", "Tanda"];
+        const TEAM_EMOJIS = {
+            "Babji": "👨‍👩‍👦",
+            "Kapadia": "👨‍👩‍👧",
+            "Sameti": "👨‍👩‍👧‍👦",
+            "Tailor": "👨‍👩‍👦",
+            "Tanda": "👨‍👩‍👧"
+        };
 
         // ================================================================
         // POINTS SYSTEM
@@ -935,19 +1041,19 @@
         // NAVIGATION
         // ================================================================
         function goHome() {
-            document.querySelectorAll('.home-screen, .team-select, .setup-screen, .voting-screen, .blank-screen, .results-screen')
+            document.querySelectorAll('.home-screen, .team-select, .setup-screen, .voting-screen, .blank-screen, .results-screen, #pointsTableScreen, #coupleFinalScreen')
                 .forEach(el => el.classList.add('hidden'));
             document.getElementById('homeScreen').classList.remove('hidden');
         }
 
         function showScreen(screenId) {
-            document.querySelectorAll('.home-screen, .team-select, .setup-screen, .voting-screen, .blank-screen, .results-screen, #pointsTableScreen')
+            document.querySelectorAll('.home-screen, .team-select, .setup-screen, .voting-screen, .blank-screen, .results-screen, #pointsTableScreen, #coupleFinalScreen')
                 .forEach(el => el.classList.add('hidden'));
             document.getElementById(screenId).classList.remove('hidden');
         }
 
         // ================================================================
-        // SUPER 10 GAME
+        // SUPER 10 GAME (unchanged from before)
         // ================================================================
         let super10State = {
             players: [],
@@ -1066,7 +1172,8 @@
                 const remaining = s.maxVotes - s.currentIndex;
                 if (remaining === 0) {
                     document.querySelector('#super10BlankScreen .message').textContent = '🎉 All votes recorded!';
-                    document.querySelector('#super10BlankScreen .sub-message').textContent = 'Tap "Next" to see results';
+                    document.querySelector('#super10BlankScreen .sub-message').textContent =
+                    'Tap "Next" to see results';
                     document.querySelector('#super10BlankScreen .btn-next').textContent = '👀 Reveal Results';
                     document.querySelector('#super10BlankScreen .btn-next').onclick = function() {
                         showSuper10Voting();
@@ -1158,34 +1265,62 @@
         // ================================================================
         let coupleState = {
             currentTeam: 'Babji',
-            mode: 'vote', // 'vote' or 'free'
+            mode: 'vote',
+            questions: [],
+            currentQuestionIndex: 0,
+            totalQuestions: 0,
+            maxQuestions: 5,
+            roundResults: [],
+            // Per question state
             question: '',
             options: [],
             answers: [],
             currentIndex: 0,
             maxAnswers: 2,
-            revealed: false
+            revealed: false,
+            matched: false,
+            pendingManual: false
         };
 
         function showTeamSelect() {
             showScreen('teamSelectScreen');
-            // Highlight current team
-            document.querySelectorAll('.team-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.team === coupleState.currentTeam);
+            renderTeamGrid();
+        }
+
+        function renderTeamGrid() {
+            const grid = document.getElementById('teamGrid');
+            grid.innerHTML = '';
+            COUPLE_TEAMS.forEach(team => {
+                const btn = document.createElement('button');
+                btn.className = 'team-btn';
+                const points = pointsData[team] || 0;
+                btn.innerHTML = `
+                    <span class="team-emoji">${TEAM_EMOJIS[team] || '💑'}</span>
+                    ${team}
+                    <span class="team-score">${points} points</span>
+                `;
+                btn.onclick = () => selectTeam(team);
+                if (points > 0) btn.classList.add('has-score');
+                grid.appendChild(btn);
             });
         }
 
         function selectTeam(team) {
             coupleState.currentTeam = team;
-            document.querySelectorAll('.team-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.team === team);
-            });
+            coupleState.questions = [];
+            coupleState.currentQuestionIndex = 0;
+            coupleState.roundResults = [];
+            coupleState.totalQuestions = 0;
             showCoupleSetup();
         }
 
         function showCoupleSetup() {
             showScreen('coupleSetupScreen');
             document.getElementById('currentTeamDisplay').textContent = coupleState.currentTeam;
+            document.getElementById('questionCounterDisplay').textContent =
+                `Question ${coupleState.questions.length + 1} of ${coupleState.maxQuestions}`;
+            document.getElementById('questionNumberLabel').textContent = `#${coupleState.questions.length + 1}`;
+            document.getElementById('coupleQuestionInput').value = '';
             document.getElementById('coupleQuestionInput').focus();
         }
 
@@ -1193,27 +1328,27 @@
             coupleState.mode = mode;
             const voteBtn = document.getElementById('coupleVoteModeBtn');
             const freeBtn = document.getElementById('coupleFreeModeBtn');
+            const optionsSection = document.getElementById('coupleOptionsSection');
             if (mode === 'vote') {
                 voteBtn.classList.add('active');
                 freeBtn.classList.remove('active');
-                document.querySelector('#coupleSetupScreen label[for="coupleOptionsInput"]').style.display = 'block';
-                document.getElementById('coupleOptionsInput').style.display = 'block';
-                document.querySelector('#coupleSetupScreen .hint').style.display = 'block';
+                optionsSection.style.display = 'block';
             } else {
                 freeBtn.classList.add('active');
                 voteBtn.classList.remove('active');
-                document.querySelector('#coupleSetupScreen label[for="coupleOptionsInput"]').style.display = 'none';
-                document.getElementById('coupleOptionsInput').style.display = 'none';
-                document.querySelector('#coupleSetupScreen .hint').style.display = 'none';
+                optionsSection.style.display = 'none';
             }
         }
 
-        function startCoupleGame() {
-            const question = document.getElementById('coupleQuestionInput').value.trim() || 'Untitled Question';
-            const mode = coupleState.mode;
-            let options = [];
+        function startCoupleRound() {
+            const question = document.getElementById('coupleQuestionInput').value.trim();
+            if (!question) {
+                alert('Please enter a question!');
+                return;
+            }
 
-            if (mode === 'vote') {
+            let options = [];
+            if (coupleState.mode === 'vote') {
                 const raw = document.getElementById('coupleOptionsInput').value.split(',').map(s => s.trim()).filter(s => s
                     .length > 0);
                 if (raw.length < 2) {
@@ -1227,12 +1362,23 @@
                 options = raw;
             }
 
+            // Save question
+            coupleState.questions.push({
+                question: question,
+                options: options,
+                mode: coupleState.mode,
+                result: null // Will be filled after round
+            });
+
+            coupleState.currentQuestionIndex = coupleState.questions.length - 1;
             coupleState.question = question;
             coupleState.options = options;
             coupleState.answers = [];
             coupleState.currentIndex = 0;
             coupleState.maxAnswers = 2;
             coupleState.revealed = false;
+            coupleState.matched = false;
+            coupleState.pendingManual = false;
 
             showCoupleVotingScreen();
         }
@@ -1240,18 +1386,19 @@
         function showCoupleVotingScreen() {
             showScreen('coupleVotingScreen');
             const s = coupleState;
-            document.getElementById('coupleQuestionDisplay').textContent = s.question;
+            const qData = s.questions[s.currentQuestionIndex];
+            document.getElementById('coupleQuestionDisplay').textContent = qData.question;
             document.getElementById('coupleVoteCounter').textContent = `Partner ${s.currentIndex + 1} of ${s.maxAnswers}`;
             document.getElementById('coupleTeamLabel').textContent = `💑 ${s.currentTeam}`;
 
-            if (s.mode === 'vote') {
+            if (qData.mode === 'vote') {
                 document.getElementById('coupleOptionsGrid').classList.remove('hidden');
                 document.getElementById('coupleFreeTextArea').classList.add('hidden');
                 document.getElementById('coupleRevealBtn').classList.remove('hidden');
 
                 const grid = document.getElementById('coupleOptionsGrid');
                 grid.innerHTML = '';
-                s.options.forEach((name, idx) => {
+                qData.options.forEach((name, idx) => {
                     const btn = document.createElement('button');
                     btn.className = 'option-btn';
                     btn.textContent = name;
@@ -1372,13 +1519,15 @@
 
             s.revealed = true;
             showScreen('coupleResultsScreen');
+
+            const qData = s.questions[s.currentQuestionIndex];
             document.getElementById('coupleResultsTeam').textContent = `💑 ${s.currentTeam}`;
-            document.getElementById('coupleResultsQuestion').textContent = `"${s.question}"`;
+            document.getElementById('coupleResultsQuestion').textContent = `"${qData.question}"`;
 
             let html = '';
             let match = false;
 
-            if (s.mode === 'vote') {
+            if (qData.mode === 'vote') {
                 const ans1 = s.answers[0].value;
                 const ans2 = s.answers[1].value;
                 match = ans1 === ans2;
@@ -1386,11 +1535,11 @@
                 html += `
                     <div class="couple-result ${match ? 'match' : 'no-match'}">
                         <div class="player-label">👤 Partner 1</div>
-                        <div class="player-answer">${s.options[ans1]}</div>
+                        <div class="player-answer">${qData.options[ans1]}</div>
                         <div class="player-label" style="margin-top:8px;">👤 Partner 2</div>
-                        <div class="player-answer">${s.options[ans2]}</div>
+                        <div class="player-answer">${qData.options[ans2]}</div>
                         <div class="match-status ${match ? 'match-text' : 'no-match-text'}">
-                            ${match ? '✅ MATCH! +1 point' : '❌ No match this time'}
+                            ${match ? '✅ MATCH! +1 point' : '❌ Different answers'}
                         </div>
                     </div>
                 `;
@@ -1406,7 +1555,7 @@
                         <div class="player-label" style="margin-top:8px;">👤 Partner 2</div>
                         <div class="player-answer">"${escapeHtml(ans2)}"</div>
                         <div class="match-status ${match ? 'match-text' : 'no-match-text'}">
-                            ${match ? '✅ MATCH! +1 point' : '❌ No match this time'}
+                            ${match ? '✅ MATCH! +1 point' : '❌ Different answers'}
                         </div>
                     </div>
                 `;
@@ -1414,32 +1563,157 @@
 
             document.getElementById('coupleResultsArea').innerHTML = html;
 
-            // Update points if match
+            // If match, auto-give point
             if (match) {
+                s.matched = true;
                 pointsData[s.currentTeam] = (pointsData[s.currentTeam] || 0) + 1;
                 savePoints();
                 document.getElementById('coupleWinnerText').innerHTML = `
                     🎉 Match! +1 point for ${s.currentTeam}!
                     <span>Total: ${pointsData[s.currentTeam]} points</span>
                 `;
+                document.getElementById('manualMatchSection').classList.add('hidden');
+                // Save result
+                qData.result = { matched: true, manual: false };
+                s.questions[s.currentQuestionIndex] = qData;
             } else {
-                document.getElementById('coupleWinnerText').innerHTML = `
-                    😅 No match this time!
-                    <span>Keep going, you'll get the next one!</span>
-                `;
+                // Show manual match button for free text mode only
+                if (qData.mode === 'free') {
+                    document.getElementById('manualMatchSection').classList.remove('hidden');
+                    document.getElementById('coupleWinnerText').innerHTML = `
+                        🤔 Different answers!
+                        <span>Do they mean the same thing? Tap below to decide.</span>
+                    `;
+                    s.pendingManual = true;
+                } else {
+                    // Vote mode - no manual match
+                    document.getElementById('manualMatchSection').classList.add('hidden');
+                    document.getElementById('coupleWinnerText').innerHTML = `
+                        ❌ No match this time!
+                        <span>Try the next question!</span>
+                    `;
+                    qData.result = { matched: false, manual: false };
+                    s.questions[s.currentQuestionIndex] = qData;
+                }
             }
         }
 
-        function showCoupleSetup() {
-            showScreen('coupleSetupScreen');
-            document.getElementById('currentTeamDisplay').textContent = coupleState.currentTeam;
-            const q = document.getElementById('coupleQuestionInput');
-            q.value = '';
-            q.focus();
+        function manualMatch(isMatch) {
+            const s = coupleState;
+            const qData = s.questions[s.currentQuestionIndex];
+
+            document.getElementById('manualMatchSection').classList.add('hidden');
+
+            if (isMatch) {
+                s.matched = true;
+                pointsData[s.currentTeam] = (pointsData[s.currentTeam] || 0) + 1;
+                savePoints();
+
+                // Update the result display
+                const area = document.getElementById('coupleResultsArea');
+                const existing = area.innerHTML;
+                // Add a note to the existing result
+                area.innerHTML = existing.replace(
+                    '❌ Different answers',
+                    '🤝 Manual Match! +1 point'
+                );
+
+                document.getElementById('coupleWinnerText').innerHTML = `
+                    🎉 Manual Match! +1 point for ${s.currentTeam}!
+                    <span>Total: ${pointsData[s.currentTeam]} points</span>
+                `;
+                qData.result = { matched: true, manual: true };
+            } else {
+                document.getElementById('coupleWinnerText').innerHTML = `
+                    ❌ No match this time!
+                    <span>Try the next question!</span>
+                `;
+                qData.result = { matched: false, manual: false };
+            }
+
+            s.questions[s.currentQuestionIndex] = qData;
+            s.pendingManual = false;
+        }
+
+        function finishTeamRound() {
+            const s = coupleState;
+            // Check if there are questions
+            if (s.questions.length === 0) {
+                alert('No questions asked yet! Ask at least one question.');
+                return;
+            }
+
+            // Check if last question has a result
+            const lastQ = s.questions[s.questions.length - 1];
+            if (!lastQ.result) {
+                alert('Please reveal the last question first!');
+                return;
+            }
+
+            // If manual match is pending, force decision
+            if (s.pendingManual) {
+                alert('Please decide if the last answers match first!');
+                return;
+            }
+
+            showFinalScore();
+        }
+
+        function showFinalScore() {
+            const s = coupleState;
+            const total = s.questions.length;
+            const matches = s.questions.filter(q => q.result && q.result.matched).length;
+
+            showScreen('coupleFinalScreen');
+            document.getElementById('finalTeamName').textContent = s.currentTeam;
+            document.getElementById('finalScore').textContent = `${matches}/${total}`;
+
+            const pct = total > 0 ? Math.round((matches / total) * 100) : 0;
+            let emoji = '😅';
+            let message = 'Keep practicing!';
+            if (pct >= 80) { emoji = '🎉';
+                message = 'Amazing teamwork! You two are in sync! 💪'; } else if (pct >= 60) { emoji = '😊';
+                message = 'Good job! You know each other well!'; } else if (pct >= 40) { emoji = '🤔';
+                message = 'Not bad! Time for some deep conversations!'; } else { emoji = '😅';
+                message = 'Time to learn more about each other! ❤️'; }
+
+            document.getElementById('finalEmoji').textContent = emoji;
+            document.getElementById('finalMessage').textContent = message;
+
+            // Build detailed results
+            let html = '<div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">📝 Question Summary</div>';
+            s.questions.forEach((q, idx) => {
+                const status = q.result && q.result.matched ? '✅' : '❌';
+                const manual = q.result && q.result.manual ? ' (manual)' : '';
+                html += `
+                    <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                        <span style="color:var(--muted); font-size:13px;">Q${idx + 1}: ${q.question.substring(0, 30)}${q.question.length > 30 ? '...' : ''}</span>
+                        <span style="color:${q.result && q.result.matched ? 'var(--green)' : 'var(--red)'}; font-weight:600;">${status}${manual}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('finalResultsList').innerHTML = html;
+        }
+
+        function confirmEndTeamRound() {
+            if (coupleState.questions.length === 0) {
+                if (confirm('No questions asked yet. Go back to team select?')) {
+                    showTeamSelect();
+                }
+                return;
+            }
+
+            if (confirm('End this team\'s round? You can see the final score.')) {
+                finishTeamRound();
+            }
         }
 
         function cancelCoupleRound() {
-            if (confirm('Cancel this round?')) {
+            if (confirm('Cancel this question? Your progress will be lost.')) {
+                // Remove last question if it was added
+                if (coupleState.questions.length > 0) {
+                    coupleState.questions.pop();
+                }
                 showCoupleSetup();
             }
         }
@@ -1480,11 +1754,11 @@
                 COUPLE_TEAMS.forEach(team => pointsData[team] = 0);
                 savePoints();
                 renderPointsTable();
+                renderTeamGrid();
             }
         }
 
         function closePointsTable() {
-            // Go back to where they were
             if (!document.getElementById('teamSelectScreen').classList.contains('hidden')) {
                 showTeamSelect();
             } else if (!document.getElementById('coupleSetupScreen').classList.contains('hidden')) {
@@ -1510,7 +1784,6 @@
         // ================================================================
         console.log('🎮 Party Games loaded!');
         console.log('👥 Teams:', COUPLE_TEAMS.join(', '));
-        console.log('🎯 Super 10 Players:', SUPER10_DEFAULT_PLAYERS.join(', '));
         console.log('💡 Choose a game from the homepage!');
 
         // Show home screen by default
