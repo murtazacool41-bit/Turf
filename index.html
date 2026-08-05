@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🤫 Secret Vote - Party Game</title>
+    <title>🎮 Party Games</title>
     <style>
         * {
             box-sizing: border-box;
@@ -18,6 +18,8 @@
             --muted: #7a85a8;
             --primary: #6c5ce7;
             --gold: #fdcb6e;
+            --green: #48bb78;
+            --red: #fc8181;
             --shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             --border: #1e2640;
         }
@@ -48,7 +50,7 @@
 
         h1 {
             color: var(--text);
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 4px;
         }
@@ -62,7 +64,95 @@
             margin-bottom: 16px;
         }
 
-        /* ===== SETUP SCREEN ===== */
+        /* ===== HOME SCREEN ===== */
+        .home-screen {
+            padding: 10px 0;
+        }
+        .game-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .game-card {
+            padding: 24px 20px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: all 0.3s;
+            touch-action: manipulation;
+        }
+        .game-card:active {
+            transform: scale(0.97);
+        }
+        .game-card .icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .game-card .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .game-card .desc {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        .game-card.super10 {
+            border-color: rgba(108, 92, 231, 0.3);
+        }
+        .game-card.super10:hover {
+            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.05);
+        }
+        .game-card.couple {
+            border-color: rgba(253, 203, 110, 0.3);
+        }
+        .game-card.couple:hover {
+            border-color: var(--gold);
+            background: rgba(253, 203, 110, 0.05);
+        }
+
+        /* ===== COUPLE GAME - TEAM SELECT ===== */
+        .team-select {
+            margin: 16px 0;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+        .team-btn {
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+        .team-btn:active {
+            transform: scale(0.95);
+        }
+        .team-btn.active {
+            border-color: var(--gold);
+            background: rgba(253, 203, 110, 0.08);
+            box-shadow: 0 0 20px rgba(253, 203, 110, 0.05);
+        }
+        .team-btn .team-emoji {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        /* ===== SETUP SCREEN (reused) ===== */
         .setup-screen {
             text-align: left;
         }
@@ -117,89 +207,6 @@
             transform: scale(0.97);
         }
 
-        .saved-names-info {
-            background: rgba(108, 92, 231, 0.08);
-            border: 1px solid rgba(108, 92, 231, 0.15);
-            border-radius: 12px;
-            padding: 12px 14px;
-            margin: 8px 0 4px 0;
-            color: var(--muted);
-            font-size: 13px;
-            text-align: center;
-        }
-        .saved-names-info strong {
-            color: var(--text);
-        }
-
-        .player-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
-            justify-content: center;
-        }
-        .player-tag {
-            background: rgba(108, 92, 231, 0.12);
-            color: var(--text);
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            border: 1px solid rgba(108, 92, 231, 0.1);
-        }
-
-        /* Mode Toggle */
-        .mode-toggle {
-            display: flex;
-            gap: 10px;
-            margin: 12px 0 8px 0;
-        }
-        .mode-btn {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--muted);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            touch-action: manipulation;
-        }
-        .mode-btn:active {
-            transform: scale(0.95);
-        }
-        .mode-btn.active {
-            border-color: var(--primary);
-            background: rgba(108, 92, 231, 0.1);
-            color: var(--text);
-        }
-        .mode-btn .mode-icon {
-            display: block;
-            font-size: 24px;
-            margin-bottom: 4px;
-        }
-
-        .toggle-options-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            color: var(--muted);
-            padding: 8px 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 13px;
-            margin-top: 8px;
-            transition: all 0.2s;
-        }
-        .toggle-options-btn:active {
-            transform: scale(0.95);
-        }
-        .toggle-options-btn.active {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: rgba(108, 92, 231, 0.08);
-        }
-
         /* ===== VOTING SCREEN ===== */
         .question-display {
             font-size: 22px;
@@ -252,7 +259,7 @@
             color: var(--primary);
         }
 
-        /* ===== FREE TEXT SCREEN ===== */
+        /* ===== FREE TEXT ===== */
         .free-text-area {
             margin: 12px 0 16px 0;
         }
@@ -340,7 +347,6 @@
             overflow-y: auto;
         }
 
-        /* Vote Mode Results */
         .result-item {
             display: flex;
             justify-content: space-between;
@@ -386,36 +392,42 @@
             font-weight: 600;
         }
 
-        /* Free Text Results */
-        .free-text-result {
-            padding: 12px 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        /* Couple Game Results */
+        .couple-result {
+            padding: 16px;
+            margin: 8px 0;
+            border-radius: 14px;
             text-align: left;
         }
-        .free-text-result:last-child {
-            border-bottom: none;
+        .couple-result.match {
+            background: rgba(72, 187, 120, 0.1);
+            border: 1px solid rgba(72, 187, 120, 0.2);
         }
-        .free-text-result .answer-number {
+        .couple-result.no-match {
+            background: rgba(252, 129, 129, 0.1);
+            border: 1px solid rgba(252, 129, 129, 0.2);
+        }
+        .couple-result .player-label {
             color: var(--muted);
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 300;
-            margin-bottom: 4px;
         }
-        .free-text-result .answer-text {
+        .couple-result .player-answer {
             color: var(--text);
             font-size: 16px;
-            line-height: 1.5;
-            padding: 4px 0;
+            font-weight: 500;
+            margin: 4px 0;
         }
-        .free-text-result .answer-text::before {
-            content: '"';
-            color: var(--muted);
-            opacity: 0.3;
+        .couple-result .match-status {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 4px;
         }
-        .free-text-result .answer-text::after {
-            content: '"';
-            color: var(--muted);
-            opacity: 0.3;
+        .couple-result .match-status.match-text {
+            color: var(--green);
+        }
+        .couple-result .match-status.no-match-text {
+            color: var(--red);
         }
 
         .winner-text {
@@ -434,6 +446,43 @@
             font-weight: 400;
             color: var(--muted);
             margin-top: 4px;
+        }
+
+        /* ===== POINTS TABLE ===== */
+        .points-table {
+            width: 100%;
+            margin: 12px 0;
+            border-collapse: collapse;
+        }
+        .points-table th {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 400;
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .points-table td {
+            color: var(--text);
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 15px;
+        }
+        .points-table .rank {
+            color: var(--muted);
+            font-weight: 300;
+            width: 30px;
+        }
+        .points-table .team-name {
+            font-weight: 500;
+        }
+        .points-table .points {
+            font-weight: 600;
+            color: var(--gold);
+            text-align: right;
+        }
+        .points-table .medal {
+            font-size: 18px;
         }
 
         /* ===== CONTROLS ===== */
@@ -482,6 +531,16 @@
             background: rgba(108, 92, 231, 0.15);
             color: var(--primary);
             border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+        .btn-points {
+            background: rgba(253, 203, 110, 0.12);
+            color: var(--gold);
+            border: 1px solid rgba(253, 203, 110, 0.15);
+        }
+        .btn-home {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .hidden {
             display: none !important;
@@ -533,12 +592,18 @@
                 padding: 11px 14px;
                 min-width: 60px;
             }
-            .mode-btn {
-                font-size: 12px;
-                padding: 8px;
+            .game-card .icon {
+                font-size: 32px;
             }
-            .mode-btn .mode-icon {
-                font-size: 20px;
+            .game-card .title {
+                font-size: 17px;
+            }
+            .team-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .team-btn {
+                font-size: 13px;
+                padding: 12px 8px;
             }
         }
     </style>
@@ -546,27 +611,205 @@
 <body>
     <div class="container" id="app">
 
-        <!-- ========== SETUP SCREEN ========== -->
-        <div id="setupScreen" class="setup-screen">
-            <h1>🤫 <span>Secret</span> Vote</h1>
-            <div class="subtitle">Two modes: Vote on options OR write free-text answers!</div>
+        <!-- ========================================================== -->
+        <!-- HOME SCREEN -->
+        <!-- ========================================================== -->
+        <div id="homeScreen" class="home-screen">
+            <h1>🎮 <span>Party</span> Games</h1>
+            <div class="subtitle">Choose your game!</div>
 
-            <!-- Mode Toggle -->
-            <div class="mode-toggle">
-                <button class="mode-btn active" id="voteModeBtn" onclick="setMode('vote')">
-                    <span class="mode-icon">🗳️</span>
+            <div class="game-cards">
+                <div class="game-card super10" onclick="startSuper10()">
+                    <span class="icon">🎯</span>
+                    <div class="title">Super 10</div>
+                    <div class="desc">Anonymous voting • 10 players • No points • Just fun!</div>
+                </div>
+
+                <div class="game-card couple" onclick="showTeamSelect()">
+                    <span class="icon">💑</span>
+                    <div class="title">Couple Game</div>
+                    <div class="desc">Couples compete • Match answers • Earn points!</div>
+                </div>
+            </div>
+
+            <div class="footer">tap a game to start</div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- COUPLE GAME - TEAM SELECT -->
+        <!-- ========================================================== -->
+        <div id="teamSelectScreen" class="hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h2 style="color:var(--text); font-size:20px;">💑 Choose Team</h2>
+                <button class="control-btn btn-home" onclick="goHome()" style="flex:0; padding:6px 14px; font-size:12px;">🏠</button>
+            </div>
+            <div class="subtitle">Which couple is playing?</div>
+
+            <div class="team-grid" id="teamGrid">
+                <button class="team-btn" data-team="Babji" onclick="selectTeam('Babji')">
+                    <span class="team-emoji">👨‍👩‍👦</span>
+                    Babji
+                </button>
+                <button class="team-btn" data-team="Kapadia" onclick="selectTeam('Kapadia')">
+                    <span class="team-emoji">👨‍👩‍👧</span>
+                    Kapadia
+                </button>
+                <button class="team-btn" data-team="Sameti" onclick="selectTeam('Sameti')">
+                    <span class="team-emoji">👨‍👩‍👧‍👦</span>
+                    Sameti
+                </button>
+                <button class="team-btn" data-team="Tailor" onclick="selectTeam('Tailor')">
+                    <span class="team-emoji">👨‍👩‍👦</span>
+                    Tailor
+                </button>
+                <button class="team-btn" data-team="Tanda" onclick="selectTeam('Tanda')">
+                    <span class="team-emoji">👨‍👩‍👧</span>
+                    Tanda
+                </button>
+            </div>
+
+            <div style="margin-top:16px;">
+                <button class="control-btn btn-points" onclick="showPointsTable()" style="width:100%;">🏆 View Points Table</button>
+            </div>
+
+            <div class="footer" style="margin-top:16px;">select a team to start</div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- COUPLE GAME - SETUP -->
+        <!-- ========================================================== -->
+        <div id="coupleSetupScreen" class="hidden setup-screen">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h2 style="color:var(--text); font-size:18px;">💑 <span id="currentTeamDisplay">Babji</span></h2>
+                <button class="control-btn btn-home" onclick="showTeamSelect()" style="flex:0; padding:6px 14px; font-size:12px;">⬅️</button>
+            </div>
+
+            <div class="mode-toggle" style="display:flex; gap:10px; margin:12px 0 8px 0;">
+                <button class="mode-btn active" id="coupleVoteModeBtn" onclick="setCoupleMode('vote')" style="flex:1; padding:10px; border:2px solid var(--border); border-radius:12px; background:rgba(255,255,255,0.03); color:var(--muted); font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s;">
+                    <span style="display:block; font-size:24px; margin-bottom:4px;">🗳️</span>
                     Vote Mode
                 </button>
-                <button class="mode-btn" id="freeModeBtn" onclick="setMode('free')">
-                    <span class="mode-icon">✍️</span>
+                <button class="mode-btn" id="coupleFreeModeBtn" onclick="setCoupleMode('free')" style="flex:1; padding:10px; border:2px solid var(--border); border-radius:12px; background:rgba(255,255,255,0.03); color:var(--muted); font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s;">
+                    <span style="display:block; font-size:24px; margin-bottom:4px;">✍️</span>
                     Free Text
                 </button>
             </div>
 
-            <!-- Default Players -->
-            <div class="saved-names-info" id="defaultPlayersInfo">
+            <label for="coupleQuestionInput">📝 Question</label>
+            <input type="text" id="coupleQuestionInput" placeholder="e.g. What's your favorite movie?" value="">
+
+            <label for="coupleOptionsInput">📝 Options (comma separated) - for Vote Mode only</label>
+            <textarea id="coupleOptionsInput" placeholder="Option 1, Option 2, Option 3">Pizza, Burger, Sushi, Pasta</textarea>
+            <div class="hint">Enter 2-10 options. Only used in Vote Mode.</div>
+
+            <button class="setup-btn" onclick="startCoupleGame()" style="margin-top:12px; background:linear-gradient(135deg, #fdcb6e, #f39c12); color:#0b0e1a;">
+                🚀 Start Round!
+            </button>
+
+            <div class="footer" style="margin-top:16px;">pass &amp; play • answers vanish after each person</div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- COUPLE GAME - VOTING SCREEN -->
+        <!-- ========================================================== -->
+        <div id="coupleVotingScreen" class="hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="color:var(--muted); font-size:13px;" id="coupleVoteCounter">Partner 1 of 2</span>
+                <span style="color:var(--gold); font-size:12px; background:rgba(253,203,110,0.1); padding:4px 12px; border-radius:50px;" id="coupleTeamLabel">💑 Babji</span>
+                <button class="control-btn btn-back" onclick="cancelCoupleRound()" style="flex:0; padding:6px 14px; font-size:12px;">✕</button>
+            </div>
+
+            <div class="question-display" id="coupleQuestionDisplay">What's your favorite movie?</div>
+
+            <div class="vote-status" id="coupleVoteStatus">👤 <span class="highlight">Pass the phone</span> and answer</div>
+
+            <div class="options-grid" id="coupleOptionsGrid"></div>
+
+            <div class="free-text-area hidden" id="coupleFreeTextArea">
+                <textarea id="coupleFreeTextInput" placeholder="Type your answer here..."></textarea>
+                <div class="char-count"><span id="coupleCharCount">0</span> characters</div>
+                <button class="submit-text-btn" id="coupleSubmitTextBtn" onclick="submitCoupleFreeText()">✍️ Submit Answer</button>
+            </div>
+
+            <button class="control-btn btn-reveal" id="coupleRevealBtn" onclick="revealCoupleAnswers()" style="width:100%;">👀 Reveal &amp; Check Match</button>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- COUPLE GAME - BLANK SCREEN -->
+        <!-- ========================================================== -->
+        <div id="coupleBlankScreen" class="hidden blank-screen">
+            <div class="big-icon">🙈</div>
+            <div class="message">Answer recorded!</div>
+            <div class="sub-message">Pass the phone to your partner</div>
+            <button class="control-btn btn-next" onclick="showCoupleVotingScreen()" style="margin-top:20px; width:100%;">➡️ Partner's Turn</button>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- COUPLE GAME - RESULTS -->
+        <!-- ========================================================== -->
+        <div id="coupleResultsScreen" class="hidden">
+            <h2 style="color:var(--text); font-size:20px; margin-bottom:4px;">💑 Results</h2>
+            <div style="color:var(--muted); font-size:13px; margin-bottom:8px;" id="coupleResultsTeam">Babji</div>
+            <div style="color:var(--muted); font-size:13px; margin-bottom:12px;" id="coupleResultsQuestion">"What's your favorite movie?"</div>
+
+            <div class="results-area" id="coupleResultsArea"></div>
+            <div class="winner-text" id="coupleWinnerText">
+                🎉 Match!
+                <span>+1 point for Babji!</span>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn btn-new-question" onclick="showCoupleSetup()">➡️ Next Question</button>
+                <button class="control-btn btn-points" onclick="showPointsTable()">🏆 Points</button>
+                <button class="control-btn btn-home" onclick="showTeamSelect()">⬅️ Teams</button>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- POINTS TABLE -->
+        <!-- ========================================================== -->
+        <div id="pointsTableScreen" class="hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h2 style="color:var(--text); font-size:20px;">🏆 Points Table</h2>
+                <button class="control-btn btn-home" onclick="closePointsTable()" style="flex:0; padding:6px 14px; font-size:12px;">✕</button>
+            </div>
+
+            <div id="pointsTableContent">
+                <table class="points-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Team</th>
+                            <th style="text-align:right;">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pointsTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="controls" style="margin-top:16px;">
+                <button class="control-btn btn-reset" onclick="resetAllPoints()">🔄 Reset All Points</button>
+                <button class="control-btn btn-home" onclick="closePointsTable()">⬅️ Back</button>
+            </div>
+
+            <div class="footer" style="margin-top:16px;">points reset when you tap "Reset All Points"</div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- SUPER 10 - Full Game (reused from earlier) -->
+        <!-- ========================================================== -->
+        <!-- SUPER 10 SETUP -->
+        <div id="super10SetupScreen" class="hidden setup-screen">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h2 style="color:var(--text); font-size:20px;">🎯 Super 10</h2>
+                <button class="control-btn btn-home" onclick="goHome()" style="flex:0; padding:6px 14px; font-size:12px;">🏠</button>
+            </div>
+            <div class="subtitle">Anonymous voting • 10 players</div>
+
+            <div class="saved-names-info">
                 ✅ <strong>Default Players:</strong>
-                <div class="player-tags" id="defaultPlayerTags">
+                <div class="player-tags">
                     <span class="player-tag">Burhan Kapadia</span>
                     <span class="player-tag">Burhan Tailor</span>
                     <span class="player-tag">Idris</span>
@@ -580,90 +823,72 @@
                 </div>
             </div>
 
-            <!-- Edit Options (only for Vote Mode) -->
-            <button class="toggle-options-btn" id="toggleOptionsBtn" onclick="toggleOptionsMode()">
+            <button class="toggle-options-btn" id="super10ToggleOptions" onclick="toggleSuper10Options()">
                 ✏️ Edit Options for This Question
             </button>
 
-            <div id="customOptionsArea" class="hidden" style="margin-top:12px;">
-                <label for="customOptionsInput">📝 Custom Options (comma separated)</label>
-                <textarea id="customOptionsInput" placeholder="Pizza, Burger, Sushi, Pasta">Pizza, Burger, Sushi, Pasta</textarea>
+            <div id="super10CustomOptions" class="hidden" style="margin-top:12px;">
+                <label for="super10CustomInput">📝 Custom Options (comma separated)</label>
+                <textarea id="super10CustomInput" placeholder="Pizza, Burger, Sushi, Pasta">Pizza, Burger, Sushi, Pasta</textarea>
                 <div class="hint">Enter 2-10 options. Leave blank to use default players.</div>
             </div>
 
             <div style="margin-top:16px; border-top:1px solid var(--border); padding-top:16px;">
-                <label for="questionInput">📝 Question (type on the spot)</label>
-                <input type="text" id="questionInput" placeholder="e.g.?" value="Who has the best style?">
+                <label for="super10QuestionInput">📝 Question</label>
+                <input type="text" id="super10QuestionInput" placeholder="e.g. Who has the best style?" value="">
                 
-                <label for="maxVotesInput">🔢 How many people are answering? (2-10)</label>
-                <input type="number" id="maxVotesInput" min="2" max="10" value="10">
+                <label for="super10MaxVotes">🔢 How many people are voting? (2-10)</label>
+                <input type="number" id="super10MaxVotes" min="2" max="10" value="10">
                 
-                <button class="setup-btn" onclick="startNewQuestion()" style="margin-top:12px; background:linear-gradient(135deg, #fdcb6e, #f39c12); color:#0b0e1a;">
-                    🚀 Start!
+                <button class="setup-btn" onclick="startSuper10Game()" style="margin-top:12px; background:linear-gradient(135deg, #fdcb6e, #f39c12); color:#0b0e1a;">
+                    🚀 Start Voting!
                 </button>
             </div>
 
-            <div class="footer" style="margin-top:20px;">pass &amp; play • answers vanish after each person</div>
+            <div class="footer" style="margin-top:16px;">pass &amp; play • votes vanish after each tap</div>
         </div>
 
-        <!-- ========== VOTING / FREE TEXT SCREEN ========== -->
-        <div id="votingScreen" class="hidden">
+        <!-- SUPER 10 VOTING -->
+        <div id="super10VotingScreen" class="hidden">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <span style="color:var(--muted); font-size:13px;" id="voteCounter">Person 1 of 10</span>
-                <span style="color:var(--muted); font-size:12px; background:rgba(108,92,231,0.1); padding:4px 12px; border-radius:50px;" id="modeLabel">🗳️ Vote</span>
-                <button class="control-btn btn-back" onclick="backToSetup()" style="flex:0; padding:6px 14px; font-size:12px;">✕</button>
+                <span style="color:var(--muted); font-size:13px;" id="super10Counter">Vote 1 of 10</span>
+                <button class="control-btn btn-back" onclick="cancelSuper10()" style="flex:0; padding:6px 14px; font-size:12px;">✕</button>
             </div>
 
-            <div class="question-display" id="questionDisplay">Who has the best style?</div>
-
-            <div class="vote-status" id="voteStatus">👤 <span class="highlight">Pass the phone</span> and answer</div>
-
-            <!-- Vote Mode Options -->
-            <div class="options-grid" id="optionsGrid"></div>
-
-            <!-- Free Text Mode -->
-            <div class="free-text-area hidden" id="freeTextArea">
-                <textarea id="freeTextInput" placeholder="Type your answer here..."></textarea>
-                <div class="char-count"><span id="charCount">0</span> characters</div>
-                <button class="submit-text-btn" id="submitTextBtn" onclick="submitFreeText()">✍️ Submit Answer</button>
-            </div>
-
-            <button class="control-btn btn-reveal" id="revealBtn" onclick="revealVotes()" style="width:100%;">👀 Reveal All Answers</button>
+            <div class="question-display" id="super10QuestionDisplay">Who has the best style?</div>
+            <div class="vote-status" id="super10Status">👤 <span class="highlight">Pass the phone</span> and tap your choice</div>
+            <div class="options-grid" id="super10OptionsGrid"></div>
+            <button class="control-btn btn-reveal" id="super10RevealBtn" onclick="revealSuper10()" style="width:100%;">👀 Reveal All Votes</button>
         </div>
 
-        <!-- ========== BLANK SCREEN ========== -->
-        <div id="blankScreen" class="hidden blank-screen">
+        <!-- SUPER 10 BLANK -->
+        <div id="super10BlankScreen" class="hidden blank-screen">
             <div class="big-icon">🙈</div>
-            <div class="message">Answer recorded!</div>
+            <div class="message">Vote recorded!</div>
             <div class="sub-message">Pass the phone to the next person</div>
-            <button class="control-btn btn-next" onclick="showVotingScreen()" style="margin-top:20px; width:100%;">➡️ Next Person</button>
+            <button class="control-btn btn-next" onclick="showSuper10Voting()" style="margin-top:20px; width:100%;">➡️ Next Voter</button>
         </div>
 
-        <!-- ========== RESULTS SCREEN ========== -->
-        <div id="resultsScreen" class="hidden">
+        <!-- SUPER 10 RESULTS -->
+        <div id="super10ResultsScreen" class="hidden">
             <h2 style="color:var(--text); font-size:20px; margin-bottom:4px;">📊 Results</h2>
-            <div style="color:var(--muted); font-size:13px; margin-bottom:12px;" id="resultsQuestion">"Who has the best style?"</div>
-
-            <div class="results-area" id="resultsArea"></div>
-            <div class="winner-text" id="winnerText">
-                🏆 Winner!
-                <span>with the most votes</span>
-            </div>
-
+            <div style="color:var(--muted); font-size:13px; margin-bottom:12px;" id="super10ResultsQuestion">"Who has the best style?"</div>
+            <div class="results-area" id="super10ResultsArea"></div>
+            <div class="winner-text" id="super10WinnerText">🏆 Winner!<span>with the most votes</span></div>
             <div class="controls">
-                <button class="control-btn btn-new-question" onclick="backToSetup()">✏️ New Question</button>
-                <button class="control-btn btn-reset" onclick="fullReset()">🔄 Reset All</button>
+                <button class="control-btn btn-new-question" onclick="showSuper10Setup()">✏️ New Question</button>
+                <button class="control-btn btn-home" onclick="goHome()">🏠 Home</button>
             </div>
         </div>
 
-        <div class="footer" id="footerText">secret answers • no one sees what you wrote</div>
+        <div class="footer" id="footerText">❤️ made for fun</div>
     </div>
 
     <script>
         // ================================================================
-        // 👥 DEFAULT PLAYERS
+        // CONFIGURATION
         // ================================================================
-        const DEFAULT_PLAYERS = [
+        const SUPER10_DEFAULT_PLAYERS = [
             "Burhan Kapadia",
             "Burhan Tailor",
             "Idris",
@@ -676,403 +901,604 @@
             "Zainab"
         ];
 
-        // ================================================================
-        // STATE
-        // ================================================================
-        let gameMode = 'vote'; // 'vote' or 'free'
-        let savedPlayers = [...DEFAULT_PLAYERS];
-        let currentQuestion = '';
-        let maxVotes = 10;
-        let votes = [];
-        let freeTextAnswers = [];
-        let currentVoteIndex = 0;
-        let isRevealed = false;
-        let useCustomOptions = false;
-        let customOptionsText = '';
+        const COUPLE_TEAMS = ["Babji", "Kapadia", "Sameti", "Tailor", "Tanda"];
 
         // ================================================================
-        // DOM REFS
+        // POINTS SYSTEM
         // ================================================================
-        const setupScreen = document.getElementById('setupScreen');
-        const votingScreen = document.getElementById('votingScreen');
-        const blankScreen = document.getElementById('blankScreen');
-        const resultsScreen = document.getElementById('resultsScreen');
+        let pointsData = {
+            "Babji": 0,
+            "Kapadia": 0,
+            "Sameti": 0,
+            "Tailor": 0,
+            "Tanda": 0
+        };
 
-        const questionInput = document.getElementById('questionInput');
-        const maxVotesInput = document.getElementById('maxVotesInput');
-        const customOptionsInput = document.getElementById('customOptionsInput');
-        const customOptionsArea = document.getElementById('customOptionsArea');
-        const toggleOptionsBtn = document.getElementById('toggleOptionsBtn');
-        const voteModeBtn = document.getElementById('voteModeBtn');
-        const freeModeBtn = document.getElementById('freeModeBtn');
-
-        const questionDisplay = document.getElementById('questionDisplay');
-        const optionsGrid = document.getElementById('optionsGrid');
-        const freeTextArea = document.getElementById('freeTextArea');
-        const freeTextInput = document.getElementById('freeTextInput');
-        const submitTextBtn = document.getElementById('submitTextBtn');
-        const charCount = document.getElementById('charCount');
-        const voteCounter = document.getElementById('voteCounter');
-        const voteStatus = document.getElementById('voteStatus');
-        const revealBtn = document.getElementById('revealBtn');
-        const modeLabel = document.getElementById('modeLabel');
-
-        const resultsQuestion = document.getElementById('resultsQuestion');
-        const resultsArea = document.getElementById('resultsArea');
-        const winnerText = document.getElementById('winnerText');
-
-        // ================================================================
-        // MODE TOGGLE
-        // ================================================================
-
-        function setMode(mode) {
-            gameMode = mode;
-            if (mode === 'vote') {
-                voteModeBtn.classList.add('active');
-                freeModeBtn.classList.remove('active');
-                toggleOptionsBtn.classList.remove('hidden');
-                if (useCustomOptions) {
-                    customOptionsArea.classList.remove('hidden');
-                } else {
-                    customOptionsArea.classList.add('hidden');
-                }
-                document.getElementById('defaultPlayersInfo').classList.remove('hidden');
-                // Show max voters label
-                document.querySelector('label[for="maxVotesInput"]').textContent = '🔢 How many people are voting? (2-10)';
-                modeLabel.textContent = '🗳️ Vote';
-            } else {
-                freeModeBtn.classList.add('active');
-                voteModeBtn.classList.remove('active');
-                toggleOptionsBtn.classList.add('hidden');
-                customOptionsArea.classList.add('hidden');
-                document.getElementById('defaultPlayersInfo').classList.add('hidden');
-                document.querySelector('label[for="maxVotesInput"]').textContent = '🔢 How many people are answering? (2-10)';
-                modeLabel.textContent = '✍️ Free Text';
-            }
-        }
-
-        // ================================================================
-        // TOGGLE CUSTOM OPTIONS
-        // ================================================================
-
-        function toggleOptionsMode() {
-            if (gameMode === 'free') return;
-            useCustomOptions = !useCustomOptions;
-            if (useCustomOptions) {
-                customOptionsArea.classList.remove('hidden');
-                toggleOptionsBtn.textContent = '🔙 Use Default Players';
-                toggleOptionsBtn.classList.add('active');
-                customOptionsInput.focus();
-                if (!customOptionsInput.value.trim()) {
-                    customOptionsInput.value = 'Pizza, Burger, Sushi, Pasta, Tacos';
-                }
-            } else {
-                customOptionsArea.classList.add('hidden');
-                toggleOptionsBtn.textContent = '✏️ Edit Options for This Question';
-                toggleOptionsBtn.classList.remove('active');
-            }
-        }
-
-        // ================================================================
-        // CORE FUNCTIONS
-        // ================================================================
-
-        function startNewQuestion() {
-            currentQuestion = questionInput.value.trim() || 'Who gets your vote?';
-            maxVotes = parseInt(maxVotesInput.value) || 10;
-            
-            let optionsToUse = [];
-            
-            if (gameMode === 'vote') {
-                if (useCustomOptions) {
-                    const raw = customOptionsInput.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
-                    if (raw.length < 2) {
-                        alert('Please enter at least 2 custom options!');
-                        return;
-                    }
-                    if (raw.length > 10) {
-                        alert('Maximum 10 options allowed!');
-                        return;
-                    }
-                    optionsToUse = raw;
-                    customOptionsText = customOptionsInput.value;
-                } else {
-                    optionsToUse = [...DEFAULT_PLAYERS];
-                }
-            } else {
-                // Free text mode - no options needed
-                optionsToUse = [];
-            }
-            
-            savedPlayers = optionsToUse;
-            maxVotes = Math.max(2, Math.min(10, maxVotes));
-
-            votes = [];
-            freeTextAnswers = [];
-            currentVoteIndex = 0;
-            isRevealed = false;
-
-            setupScreen.classList.add('hidden');
-            votingScreen.classList.remove('hidden');
-            blankScreen.classList.add('hidden');
-            resultsScreen.classList.add('hidden');
-
-            renderVotingScreen();
-        }
-
-        function renderVotingScreen() {
-            questionDisplay.textContent = currentQuestion;
-            voteCounter.textContent = `Person ${currentVoteIndex + 1} of ${maxVotes}`;
-
-            if (gameMode === 'vote') {
-                optionsGrid.classList.remove('hidden');
-                freeTextArea.classList.add('hidden');
-                revealBtn.classList.remove('hidden');
-                
-                optionsGrid.innerHTML = '';
-                savedPlayers.forEach((name, idx) => {
-                    const btn = document.createElement('button');
-                    btn.className = 'option-btn';
-                    btn.textContent = name;
-                    btn.dataset.index = idx;
-                    btn.onclick = () => castVote(idx);
-                    optionsGrid.appendChild(btn);
+        // Load points from localStorage
+        try {
+            const saved = localStorage.getItem('coupleGamePoints');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                COUPLE_TEAMS.forEach(team => {
+                    if (parsed[team] !== undefined) pointsData[team] = parsed[team];
                 });
-
-                voteStatus.innerHTML = `👤 <span class="highlight">Pass the phone</span> and tap your choice`;
-
-                if (currentVoteIndex >= maxVotes) {
-                    revealBtn.classList.remove('hidden');
-                    voteStatus.innerHTML = `✅ All ${maxVotes} voted! Tap <span class="highlight">Reveal</span>`;
-                    voteStatus.style.color = '#fdcb6e';
-                } else {
-                    revealBtn.classList.add('hidden');
-                    voteStatus.style.color = '#7a85a8';
-                }
-
-                document.querySelectorAll('.option-btn').forEach(btn => {
-                    btn.className = 'option-btn';
-                    btn.disabled = false;
-                });
-
-            } else {
-                // Free Text Mode
-                optionsGrid.classList.add('hidden');
-                freeTextArea.classList.remove('hidden');
-                revealBtn.classList.add('hidden');
-                freeTextInput.value = '';
-                freeTextInput.disabled = false;
-                submitTextBtn.disabled = false;
-                updateCharCount();
-                
-                if (currentVoteIndex >= maxVotes) {
-                    freeTextArea.classList.add('hidden');
-                    revealBtn.classList.remove('hidden');
-                    voteStatus.innerHTML = `✅ All ${maxVotes} answered! Tap <span class="highlight">Reveal</span>`;
-                    voteStatus.style.color = '#fdcb6e';
-                } else {
-                    voteStatus.innerHTML = `✍️ <span class="highlight">Pass the phone</span> and type your answer`;
-                    voteStatus.style.color = '#7a85a8';
-                    freeTextInput.focus();
-                }
             }
+        } catch (e) {}
 
-            votingScreen.classList.remove('hidden');
-            blankScreen.classList.add('hidden');
-            resultsScreen.classList.add('hidden');
+        function savePoints() {
+            try {
+                localStorage.setItem('coupleGamePoints', JSON.stringify(pointsData));
+            } catch (e) {}
         }
 
         // ================================================================
-        // VOTE MODE
+        // NAVIGATION
         // ================================================================
+        function goHome() {
+            document.querySelectorAll('.home-screen, .team-select, .setup-screen, .voting-screen, .blank-screen, .results-screen')
+                .forEach(el => el.classList.add('hidden'));
+            document.getElementById('homeScreen').classList.remove('hidden');
+        }
 
-        function castVote(optionIndex) {
-            if (isRevealed) return;
-            if (currentVoteIndex >= maxVotes) {
-                alert('All votes already cast! Tap Reveal.');
-                return;
+        function showScreen(screenId) {
+            document.querySelectorAll('.home-screen, .team-select, .setup-screen, .voting-screen, .blank-screen, .results-screen, #pointsTableScreen')
+                .forEach(el => el.classList.add('hidden'));
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        // ================================================================
+        // SUPER 10 GAME
+        // ================================================================
+        let super10State = {
+            players: [],
+            question: '',
+            maxVotes: 10,
+            votes: [],
+            currentIndex: 0,
+            revealed: false,
+            useCustom: false
+        };
+
+        function startSuper10() {
+            showScreen('super10SetupScreen');
+            document.getElementById('super10QuestionInput').focus();
+        }
+
+        function toggleSuper10Options() {
+            const area = document.getElementById('super10CustomOptions');
+            const btn = document.getElementById('super10ToggleOptions');
+            if (area.classList.contains('hidden')) {
+                area.classList.remove('hidden');
+                btn.textContent = '🔙 Use Default Players';
+                btn.classList.add('active');
+                if (!document.getElementById('super10CustomInput').value.trim()) {
+                    document.getElementById('super10CustomInput').value = 'Pizza, Burger, Sushi, Pasta, Tacos';
+                }
+            } else {
+                area.classList.add('hidden');
+                btn.textContent = '✏️ Edit Options for This Question';
+                btn.classList.remove('active');
+            }
+        }
+
+        function startSuper10Game() {
+            const question = document.getElementById('super10QuestionInput').value.trim() || 'Untitled Question';
+            const maxVotes = parseInt(document.getElementById('super10MaxVotes').value) || 10;
+            const useCustom = !document.getElementById('super10CustomOptions').classList.contains('hidden');
+            let players = [];
+
+            if (useCustom) {
+                const raw = document.getElementById('super10CustomInput').value.split(',').map(s => s.trim()).filter(s => s
+                    .length > 0);
+                if (raw.length < 2) {
+                    alert('Please enter at least 2 custom options!');
+                    return;
+                }
+                if (raw.length > 10) {
+                    alert('Maximum 10 options allowed!');
+                    return;
+                }
+                players = raw;
+            } else {
+                players = [...SUPER10_DEFAULT_PLAYERS];
             }
 
-            votes.push(optionIndex);
-            currentVoteIndex++;
+            super10State.players = players;
+            super10State.question = question;
+            super10State.maxVotes = Math.max(2, Math.min(10, maxVotes));
+            super10State.votes = [];
+            super10State.currentIndex = 0;
+            super10State.revealed = false;
 
-            const btns = document.querySelectorAll('.option-btn');
+            showSuper10Voting();
+        }
+
+        function showSuper10Voting() {
+            showScreen('super10VotingScreen');
+            const s = super10State;
+            document.getElementById('super10QuestionDisplay').textContent = s.question;
+            document.getElementById('super10Counter').textContent = `Vote ${s.currentIndex + 1} of ${s.maxVotes}`;
+
+            const grid = document.getElementById('super10OptionsGrid');
+            grid.innerHTML = '';
+            s.players.forEach((name, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = name;
+                btn.onclick = () => castSuper10Vote(idx);
+                grid.appendChild(btn);
+            });
+
+            const status = document.getElementById('super10Status');
+            if (s.currentIndex >= s.maxVotes) {
+                document.getElementById('super10RevealBtn').classList.remove('hidden');
+                status.innerHTML = `✅ All ${s.maxVotes} voted! Tap <span class="highlight">Reveal</span>`;
+                status.style.color = '#fdcb6e';
+            } else {
+                document.getElementById('super10RevealBtn').classList.add('hidden');
+                status.innerHTML = `👤 <span class="highlight">Pass the phone</span> and tap your choice`;
+                status.style.color = '#7a85a8';
+            }
+
+            document.querySelectorAll('#super10OptionsGrid .option-btn').forEach(btn => {
+                btn.className = 'option-btn';
+                btn.disabled = false;
+            });
+        }
+
+        function castSuper10Vote(index) {
+            const s = super10State;
+            if (s.revealed || s.currentIndex >= s.maxVotes) return;
+
+            s.votes.push(index);
+            s.currentIndex++;
+
+            const btns = document.querySelectorAll('#super10OptionsGrid .option-btn');
             btns.forEach((btn, idx) => {
-                if (idx === optionIndex) {
-                    btn.classList.add('voted-hidden');
-                }
+                if (idx === index) btn.classList.add('voted-hidden');
                 btn.disabled = true;
             });
 
             if (navigator.vibrate) navigator.vibrate(12);
 
             setTimeout(() => {
-                showBlankScreen();
+                showScreen('super10BlankScreen');
+                const remaining = s.maxVotes - s.currentIndex;
+                if (remaining === 0) {
+                    document.querySelector('#super10BlankScreen .message').textContent = '🎉 All votes recorded!';
+                    document.querySelector('#super10BlankScreen .sub-message').textContent = 'Tap "Next" to see results';
+                    document.querySelector('#super10BlankScreen .btn-next').textContent = '👀 Reveal Results';
+                    document.querySelector('#super10BlankScreen .btn-next').onclick = function() {
+                        showSuper10Voting();
+                        if (s.currentIndex >= s.maxVotes) revealSuper10();
+                    };
+                } else {
+                    document.querySelector('#super10BlankScreen .message').textContent = '🙈 Vote recorded!';
+                    document.querySelector('#super10BlankScreen .sub-message').textContent =
+                        `Pass the phone to the next person (${remaining} more votes needed)`;
+                    document.querySelector('#super10BlankScreen .btn-next').textContent = '➡️ Next Voter';
+                    document.querySelector('#super10BlankScreen .btn-next').onclick = showSuper10Voting;
+                }
             }, 300);
         }
 
-        // ================================================================
-        // FREE TEXT MODE
-        // ================================================================
-
-        function updateCharCount() {
-            charCount.textContent = freeTextInput.value.length;
-        }
-
-        function submitFreeText() {
-            if (isRevealed) return;
-            if (currentVoteIndex >= maxVotes) {
-                alert('All answers already submitted! Tap Reveal.');
+        function revealSuper10() {
+            const s = super10State;
+            if (s.currentIndex < s.maxVotes) {
+                alert(`Need ${s.maxVotes - s.currentIndex} more votes!`);
                 return;
             }
 
-            const text = freeTextInput.value.trim();
+            s.revealed = true;
+            showScreen('super10ResultsScreen');
+            document.getElementById('super10ResultsQuestion').textContent = `"${s.question}"`;
+
+            const counts = {};
+            s.players.forEach((name, idx) => {
+                counts[idx] = s.votes.filter(v => v === idx).length;
+            });
+
+            const sorted = Object.entries(counts)
+                .sort((a, b) => b[1] - a[1])
+                .map(([idx, count]) => ({
+                    name: s.players[parseInt(idx)],
+                    count: count
+                }));
+
+            const maxCount = sorted.length > 0 ? sorted[0].count : 0;
+            const winners = sorted.filter(p => p.count === maxCount && maxCount > 0);
+
+            let html = '';
+            sorted.forEach(p => {
+                const pct = s.maxVotes > 0 ? Math.round((p.count / s.maxVotes) * 100) : 0;
+                const isWinner = p.count === maxCount && maxCount > 0;
+                html += `
+                    <div class="result-item">
+                        <span class="result-name">${p.name}</span>
+                        <div class="result-bar-wrap">
+                            <div class="result-bar-fill ${isWinner ? 'winner' : ''}" style="width:${pct}%;"></div>
+                        </div>
+                        <span class="result-votes">${p.count}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('super10ResultsArea').innerHTML = html;
+
+            if (maxCount === 0) {
+                document.getElementById('super10WinnerText').innerHTML = '😶 No votes cast!';
+            } else if (winners.length === 1) {
+                document.getElementById('super10WinnerText').innerHTML = `
+                    🏆 ${winners[0].name} wins!
+                    <span>with ${maxCount} out of ${s.maxVotes} votes</span>
+                `;
+            } else {
+                document.getElementById('super10WinnerText').innerHTML = `
+                    🤝 Tie between ${winners.map(p => p.name).join(' & ')}!
+                    <span>each with ${maxCount} votes</span>
+                `;
+            }
+        }
+
+        function showSuper10Setup() {
+            showScreen('super10SetupScreen');
+            const q = document.getElementById('super10QuestionInput');
+            q.value = super10State.question || '';
+            q.focus();
+            q.select();
+        }
+
+        function cancelSuper10() {
+            if (confirm('Cancel this round?')) {
+                showSuper10Setup();
+            }
+        }
+
+        // ================================================================
+        // COUPLE GAME
+        // ================================================================
+        let coupleState = {
+            currentTeam: 'Babji',
+            mode: 'vote', // 'vote' or 'free'
+            question: '',
+            options: [],
+            answers: [],
+            currentIndex: 0,
+            maxAnswers: 2,
+            revealed: false
+        };
+
+        function showTeamSelect() {
+            showScreen('teamSelectScreen');
+            // Highlight current team
+            document.querySelectorAll('.team-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.team === coupleState.currentTeam);
+            });
+        }
+
+        function selectTeam(team) {
+            coupleState.currentTeam = team;
+            document.querySelectorAll('.team-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.team === team);
+            });
+            showCoupleSetup();
+        }
+
+        function showCoupleSetup() {
+            showScreen('coupleSetupScreen');
+            document.getElementById('currentTeamDisplay').textContent = coupleState.currentTeam;
+            document.getElementById('coupleQuestionInput').focus();
+        }
+
+        function setCoupleMode(mode) {
+            coupleState.mode = mode;
+            const voteBtn = document.getElementById('coupleVoteModeBtn');
+            const freeBtn = document.getElementById('coupleFreeModeBtn');
+            if (mode === 'vote') {
+                voteBtn.classList.add('active');
+                freeBtn.classList.remove('active');
+                document.querySelector('#coupleSetupScreen label[for="coupleOptionsInput"]').style.display = 'block';
+                document.getElementById('coupleOptionsInput').style.display = 'block';
+                document.querySelector('#coupleSetupScreen .hint').style.display = 'block';
+            } else {
+                freeBtn.classList.add('active');
+                voteBtn.classList.remove('active');
+                document.querySelector('#coupleSetupScreen label[for="coupleOptionsInput"]').style.display = 'none';
+                document.getElementById('coupleOptionsInput').style.display = 'none';
+                document.querySelector('#coupleSetupScreen .hint').style.display = 'none';
+            }
+        }
+
+        function startCoupleGame() {
+            const question = document.getElementById('coupleQuestionInput').value.trim() || 'Untitled Question';
+            const mode = coupleState.mode;
+            let options = [];
+
+            if (mode === 'vote') {
+                const raw = document.getElementById('coupleOptionsInput').value.split(',').map(s => s.trim()).filter(s => s
+                    .length > 0);
+                if (raw.length < 2) {
+                    alert('Please enter at least 2 options!');
+                    return;
+                }
+                if (raw.length > 10) {
+                    alert('Maximum 10 options allowed!');
+                    return;
+                }
+                options = raw;
+            }
+
+            coupleState.question = question;
+            coupleState.options = options;
+            coupleState.answers = [];
+            coupleState.currentIndex = 0;
+            coupleState.maxAnswers = 2;
+            coupleState.revealed = false;
+
+            showCoupleVotingScreen();
+        }
+
+        function showCoupleVotingScreen() {
+            showScreen('coupleVotingScreen');
+            const s = coupleState;
+            document.getElementById('coupleQuestionDisplay').textContent = s.question;
+            document.getElementById('coupleVoteCounter').textContent = `Partner ${s.currentIndex + 1} of ${s.maxAnswers}`;
+            document.getElementById('coupleTeamLabel').textContent = `💑 ${s.currentTeam}`;
+
+            if (s.mode === 'vote') {
+                document.getElementById('coupleOptionsGrid').classList.remove('hidden');
+                document.getElementById('coupleFreeTextArea').classList.add('hidden');
+                document.getElementById('coupleRevealBtn').classList.remove('hidden');
+
+                const grid = document.getElementById('coupleOptionsGrid');
+                grid.innerHTML = '';
+                s.options.forEach((name, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = name;
+                    btn.onclick = () => castCoupleVote(idx);
+                    grid.appendChild(btn);
+                });
+
+                document.getElementById('coupleVoteStatus').innerHTML =
+                    `👤 <span class="highlight">Pass the phone</span> and tap your choice`;
+
+                if (s.currentIndex >= s.maxAnswers) {
+                    document.getElementById('coupleRevealBtn').classList.remove('hidden');
+                    document.getElementById('coupleVoteStatus').innerHTML =
+                        `✅ Both answered! Tap <span class="highlight">Reveal</span>`;
+                    document.getElementById('coupleVoteStatus').style.color = '#fdcb6e';
+                } else {
+                    document.getElementById('coupleRevealBtn').classList.add('hidden');
+                    document.getElementById('coupleVoteStatus').style.color = '#7a85a8';
+                }
+
+                document.querySelectorAll('#coupleOptionsGrid .option-btn').forEach(btn => {
+                    btn.className = 'option-btn';
+                    btn.disabled = false;
+                });
+
+            } else {
+                // Free Text Mode
+                document.getElementById('coupleOptionsGrid').classList.add('hidden');
+                document.getElementById('coupleFreeTextArea').classList.remove('hidden');
+                document.getElementById('coupleRevealBtn').classList.add('hidden');
+                document.getElementById('coupleFreeTextInput').value = '';
+                document.getElementById('coupleFreeTextInput').disabled = false;
+                document.getElementById('coupleSubmitTextBtn').disabled = false;
+                document.getElementById('coupleCharCount').textContent = '0';
+
+                if (s.currentIndex >= s.maxAnswers) {
+                    document.getElementById('coupleFreeTextArea').classList.add('hidden');
+                    document.getElementById('coupleRevealBtn').classList.remove('hidden');
+                    document.getElementById('coupleVoteStatus').innerHTML =
+                        `✅ Both answered! Tap <span class="highlight">Reveal</span>`;
+                    document.getElementById('coupleVoteStatus').style.color = '#fdcb6e';
+                } else {
+                    document.getElementById('coupleVoteStatus').innerHTML =
+                        `✍️ <span class="highlight">Pass the phone</span> and type your answer`;
+                    document.getElementById('coupleVoteStatus').style.color = '#7a85a8';
+                    document.getElementById('coupleFreeTextInput').focus();
+                }
+            }
+        }
+
+        function castCoupleVote(index) {
+            const s = coupleState;
+            if (s.revealed || s.currentIndex >= s.maxAnswers) return;
+
+            s.answers.push({ type: 'vote', value: index });
+            s.currentIndex++;
+
+            const btns = document.querySelectorAll('#coupleOptionsGrid .option-btn');
+            btns.forEach((btn, idx) => {
+                if (idx === index) btn.classList.add('voted-hidden');
+                btn.disabled = true;
+            });
+
+            if (navigator.vibrate) navigator.vibrate(12);
+
+            setTimeout(() => showCoupleBlankScreen(), 300);
+        }
+
+        function submitCoupleFreeText() {
+            const s = coupleState;
+            if (s.revealed || s.currentIndex >= s.maxAnswers) return;
+
+            const text = document.getElementById('coupleFreeTextInput').value.trim();
             if (!text) {
                 alert('Please write something before submitting!');
                 return;
             }
 
-            freeTextAnswers.push(text);
-            currentVoteIndex++;
+            s.answers.push({ type: 'free', value: text });
+            s.currentIndex++;
 
             if (navigator.vibrate) navigator.vibrate(12);
 
-            freeTextInput.disabled = true;
-            submitTextBtn.disabled = true;
+            document.getElementById('coupleFreeTextInput').disabled = true;
+            document.getElementById('coupleSubmitTextBtn').disabled = true;
 
-            setTimeout(() => {
-                showBlankScreen();
-            }, 300);
+            setTimeout(() => showCoupleBlankScreen(), 300);
         }
 
-        // ================================================================
-        // BLANK SCREEN
-        // ================================================================
+        function showCoupleBlankScreen() {
+            showScreen('coupleBlankScreen');
+            const s = coupleState;
+            const remaining = s.maxAnswers - s.currentIndex;
 
-        function showBlankScreen() {
-            votingScreen.classList.add('hidden');
-            blankScreen.classList.remove('hidden');
-
-            const remaining = maxVotes - currentVoteIndex;
             if (remaining === 0) {
-                document.querySelector('#blankScreen .message').textContent = '🎉 All answers recorded!';
-                document.querySelector('#blankScreen .sub-message').textContent = 'Tap "Next" to see results';
-                document.querySelector('#blankScreen .btn-next').textContent = '👀 Reveal Results';
-                document.querySelector('#blankScreen .btn-next').onclick = function() {
-                    showVotingScreen();
-                    if (currentVoteIndex >= maxVotes) {
-                        revealVotes();
-                    }
+                document.querySelector('#coupleBlankScreen .message').textContent = '🎉 Both answered!';
+                document.querySelector('#coupleBlankScreen .sub-message').textContent = 'Tap "Next" to see results';
+                document.querySelector('#coupleBlankScreen .btn-next').textContent = '👀 Reveal & Check';
+                document.querySelector('#coupleBlankScreen .btn-next').onclick = function() {
+                    showCoupleVotingScreen();
+                    if (s.currentIndex >= s.maxAnswers) revealCoupleAnswers();
                 };
             } else {
-                const modeText = gameMode === 'vote' ? 'vote' : 'answer';
-                document.querySelector('#blankScreen .message').textContent = `🙈 ${modeText === 'vote' ? 'Vote' : 'Answer'} recorded!`;
-                document.querySelector('#blankScreen .sub-message').textContent =
-                    `Pass the phone to the next person (${remaining} more ${modeText}s needed)`;
-                document.querySelector('#blankScreen .btn-next').textContent = '➡️ Next Person';
-                document.querySelector('#blankScreen .btn-next').onclick = showVotingScreen;
+                document.querySelector('#coupleBlankScreen .message').textContent = '🙈 Answer recorded!';
+                document.querySelector('#coupleBlankScreen .sub-message').textContent =
+                    `Pass the phone to your partner (${remaining} more answer needed)`;
+                document.querySelector('#coupleBlankScreen .btn-next').textContent = '➡️ Partner\'s Turn';
+                document.querySelector('#coupleBlankScreen .btn-next').onclick = showCoupleVotingScreen;
             }
         }
 
-        function showVotingScreen() {
-            if (currentVoteIndex >= maxVotes) {
-                revealVotes();
-                return;
-            }
-            renderVotingScreen();
-        }
-
-        // ================================================================
-        // REVEAL
-        // ================================================================
-
-        function revealVotes() {
-            if (currentVoteIndex < maxVotes) {
-                const remaining = maxVotes - currentVoteIndex;
-                alert(`Need ${remaining} more answer${remaining > 1 ? 's' : ''} before revealing!`);
+        function revealCoupleAnswers() {
+            const s = coupleState;
+            if (s.currentIndex < s.maxAnswers) {
+                alert(`Need ${s.maxAnswers - s.currentIndex} more answer!`);
                 return;
             }
 
-            isRevealed = true;
-            votingScreen.classList.add('hidden');
-            blankScreen.classList.add('hidden');
-            resultsScreen.classList.remove('hidden');
+            s.revealed = true;
+            showScreen('coupleResultsScreen');
+            document.getElementById('coupleResultsTeam').textContent = `💑 ${s.currentTeam}`;
+            document.getElementById('coupleResultsQuestion').textContent = `"${s.question}"`;
 
-            resultsQuestion.textContent = `"${currentQuestion}"`;
+            let html = '';
+            let match = false;
 
-            if (gameMode === 'vote') {
-                // Vote Mode Results
-                const counts = {};
-                savedPlayers.forEach((name, idx) => {
-                    counts[idx] = votes.filter(v => v === idx).length;
-                });
+            if (s.mode === 'vote') {
+                const ans1 = s.answers[0].value;
+                const ans2 = s.answers[1].value;
+                match = ans1 === ans2;
 
-                const sorted = Object.entries(counts)
-                    .sort((a, b) => b[1] - a[1])
-                    .map(([idx, count]) => ({
-                        name: savedPlayers[parseInt(idx)],
-                        count: count,
-                        index: parseInt(idx)
-                    }));
-
-                const maxCount = sorted.length > 0 ? sorted[0].count : 0;
-                const winners = sorted.filter(p => p.count === maxCount && maxCount > 0);
-
-                let html = '';
-                sorted.forEach((p) => {
-                    const pct = maxVotes > 0 ? Math.round((p.count / maxVotes) * 100) : 0;
-                    const isWinner = p.count === maxCount && maxCount > 0;
-                    html += `
-                        <div class="result-item">
-                            <span class="result-name">${p.name}</span>
-                            <div class="result-bar-wrap">
-                                <div class="result-bar-fill ${isWinner ? 'winner' : ''}" style="width:${pct}%;"></div>
-                            </div>
-                            <span class="result-votes">${p.count}</span>
+                html += `
+                    <div class="couple-result ${match ? 'match' : 'no-match'}">
+                        <div class="player-label">👤 Partner 1</div>
+                        <div class="player-answer">${s.options[ans1]}</div>
+                        <div class="player-label" style="margin-top:8px;">👤 Partner 2</div>
+                        <div class="player-answer">${s.options[ans2]}</div>
+                        <div class="match-status ${match ? 'match-text' : 'no-match-text'}">
+                            ${match ? '✅ MATCH! +1 point' : '❌ No match this time'}
                         </div>
-                    `;
-                });
-                resultsArea.innerHTML = html;
-
-                if (maxCount === 0) {
-                    winnerText.innerHTML = '😶 No votes cast!';
-                } else if (winners.length === 1) {
-                    winnerText.innerHTML = `
-                        🏆 ${winners[0].name} wins!
-                        <span>with ${maxCount} out of ${maxVotes} votes</span>
-                    `;
-                } else {
-                    const names = winners.map(p => p.name).join(' & ');
-                    winnerText.innerHTML = `
-                        🤝 It's a tie between ${names}!
-                        <span>each with ${maxCount} votes</span>
-                    `;
-                }
-
-            } else {
-                // Free Text Mode Results
-                let html = '';
-                freeTextAnswers.forEach((text, idx) => {
-                    html += `
-                        <div class="free-text-result">
-                            <div class="answer-number">✍️ Answer ${idx + 1}</div>
-                            <div class="answer-text">${escapeHtml(text)}</div>
-                        </div>
-                    `;
-                });
-                resultsArea.innerHTML = html;
-
-                winnerText.innerHTML = `
-                    📝 ${freeTextAnswers.length} answers submitted!
-                    <span>Read through and discuss together</span>
+                    </div>
                 `;
+            } else {
+                const ans1 = s.answers[0].value;
+                const ans2 = s.answers[1].value;
+                match = ans1.toLowerCase().trim() === ans2.toLowerCase().trim();
+
+                html += `
+                    <div class="couple-result ${match ? 'match' : 'no-match'}">
+                        <div class="player-label">👤 Partner 1</div>
+                        <div class="player-answer">"${escapeHtml(ans1)}"</div>
+                        <div class="player-label" style="margin-top:8px;">👤 Partner 2</div>
+                        <div class="player-answer">"${escapeHtml(ans2)}"</div>
+                        <div class="match-status ${match ? 'match-text' : 'no-match-text'}">
+                            ${match ? '✅ MATCH! +1 point' : '❌ No match this time'}
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('coupleResultsArea').innerHTML = html;
+
+            // Update points if match
+            if (match) {
+                pointsData[s.currentTeam] = (pointsData[s.currentTeam] || 0) + 1;
+                savePoints();
+                document.getElementById('coupleWinnerText').innerHTML = `
+                    🎉 Match! +1 point for ${s.currentTeam}!
+                    <span>Total: ${pointsData[s.currentTeam]} points</span>
+                `;
+            } else {
+                document.getElementById('coupleWinnerText').innerHTML = `
+                    😅 No match this time!
+                    <span>Keep going, you'll get the next one!</span>
+                `;
+            }
+        }
+
+        function showCoupleSetup() {
+            showScreen('coupleSetupScreen');
+            document.getElementById('currentTeamDisplay').textContent = coupleState.currentTeam;
+            const q = document.getElementById('coupleQuestionInput');
+            q.value = '';
+            q.focus();
+        }
+
+        function cancelCoupleRound() {
+            if (confirm('Cancel this round?')) {
+                showCoupleSetup();
+            }
+        }
+
+        // ================================================================
+        // POINTS TABLE
+        // ================================================================
+        function showPointsTable() {
+            showScreen('pointsTableScreen');
+            renderPointsTable();
+        }
+
+        function renderPointsTable() {
+            const sorted = COUPLE_TEAMS.map(team => ({
+                team: team,
+                points: pointsData[team] || 0
+            })).sort((a, b) => b.points - a.points);
+
+            const medals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+
+            let html = '';
+            sorted.forEach((item, index) => {
+                const medal = index < 3 ? medals[index] : `#${index + 1}`;
+                html += `
+                    <tr>
+                        <td class="rank">${medal}</td>
+                        <td class="team-name">${item.team}</td>
+                        <td class="points">${item.points}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('pointsTableBody').innerHTML = html;
+        }
+
+        function resetAllPoints() {
+            if (confirm('Reset all points for ALL teams?')) {
+                COUPLE_TEAMS.forEach(team => pointsData[team] = 0);
+                savePoints();
+                renderPointsTable();
+            }
+        }
+
+        function closePointsTable() {
+            // Go back to where they were
+            if (!document.getElementById('teamSelectScreen').classList.contains('hidden')) {
+                showTeamSelect();
+            } else if (!document.getElementById('coupleSetupScreen').classList.contains('hidden')) {
+                showCoupleSetup();
+            } else if (!document.getElementById('coupleResultsScreen').classList.contains('hidden')) {
+                showScreen('coupleResultsScreen');
+            } else {
+                goHome();
             }
         }
 
         // ================================================================
         // HELPERS
         // ================================================================
-
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -1080,90 +1506,15 @@
         }
 
         // ================================================================
-        // NAVIGATION
-        // ================================================================
-
-        function backToSetup() {
-            setupScreen.classList.remove('hidden');
-            votingScreen.classList.add('hidden');
-            blankScreen.classList.add('hidden');
-            resultsScreen.classList.add('hidden');
-            
-            if (currentQuestion) {
-                questionInput.value = currentQuestion;
-            }
-            maxVotesInput.value = maxVotes;
-            
-            if (useCustomOptions && customOptionsText) {
-                customOptionsInput.value = customOptionsText;
-                customOptionsArea.classList.remove('hidden');
-                toggleOptionsBtn.textContent = '🔙 Use Default Players';
-                toggleOptionsBtn.classList.add('active');
-            }
-            
-            questionInput.focus();
-            questionInput.select();
-        }
-
-        function fullReset() {
-            savedPlayers = [...DEFAULT_PLAYERS];
-            questionInput.value = '';
-            maxVotesInput.value = '10';
-            customOptionsInput.value = '';
-            customOptionsArea.classList.add('hidden');
-            useCustomOptions = false;
-            toggleOptionsBtn.textContent = '✏️ Edit Options for This Question';
-            toggleOptionsBtn.classList.remove('active');
-            votes = [];
-            freeTextAnswers = [];
-            currentVoteIndex = 0;
-            isRevealed = false;
-            
-            setMode('vote');
-            setupScreen.classList.remove('hidden');
-            votingScreen.classList.add('hidden');
-            blankScreen.classList.add('hidden');
-            resultsScreen.classList.add('hidden');
-            
-            questionInput.focus();
-        }
-
-        // ================================================================
-        // KEYBOARD SHORTCUTS
-        // ================================================================
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !setupScreen.classList.contains('hidden')) {
-                if (document.activeElement === questionInput || 
-                    document.activeElement === maxVotesInput ||
-                    document.activeElement === customOptionsInput) {
-                    startNewQuestion();
-                }
-            }
-            if ((e.key === 'r' || e.key === 'R') && !votingScreen.classList.contains('hidden')) {
-                revealVotes();
-            }
-            if (e.key === 'Enter' && !freeTextArea.classList.contains('hidden')) {
-                if (document.activeElement === freeTextInput && !submitTextBtn.disabled) {
-                    submitFreeText();
-                }
-            }
-        });
-
-        // ================================================================
-        // AUTO-CHARACTER COUNT
-        // ================================================================
-        freeTextInput.addEventListener('input', updateCharCount);
-
-        // ================================================================
         // INIT
         // ================================================================
-        console.log('🔮 Secret Vote ready!');
-        console.log('👥 Two modes: Vote 🗳️ or Free Text ✍️');
-        console.log('💡 Toggle between modes and start asking!');
-        
-        questionInput.value = 'Who has the best style?';
-        maxVotesInput.value = '10';
-        setMode('vote');
+        console.log('🎮 Party Games loaded!');
+        console.log('👥 Teams:', COUPLE_TEAMS.join(', '));
+        console.log('🎯 Super 10 Players:', SUPER10_DEFAULT_PLAYERS.join(', '));
+        console.log('💡 Choose a game from the homepage!');
+
+        // Show home screen by default
+        goHome();
     </script>
 </body>
 </html>
